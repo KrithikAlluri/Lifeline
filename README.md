@@ -65,14 +65,21 @@ A low-cost, modular diagnostic system for blood analysis at the point of care. L
 ---
 
 ## Repository Structure
-/hardware/         # Schematics, PCB files, BOM, hardware photos
-/software/         # Raspberry Pi, ESP32, and analysis scripts
-/dashboards/       # UI code (Flask/Streamlit/PyQt)
-/docs/             # Design docs, protocol notes, research, provisional patent
-/images/           # Demo/build images, UI screenshots
-/tests/            # Sensor/data test scripts and datasets
-README.md
----
+
+This repository is organized to make development, documentation, and collaboration straightforward.  
+Below is a description of each main folder and file:
+
+```
+/hardware/         # Schematics, PCB designs, enclosure files, Bill of Materials (BOM), and hardware photos
+/software/         # All source code for Raspberry Pi, ESP32 firmware, sensor drivers, image analysis, and main device scripts
+/dashboards/       # Code for UI dashboards (Flask, Streamlit, or PyQt applications)
+/docs/             # Design documents, protocols, user guides, research notes, and provisional patent materials
+/images/           # Demo images, system photos, UI screenshots, and project graphics
+/tests/            # Test scripts, example datasets, and validation routines
+README.md          # Project overview and essential info
+LICENSE            # Open-source license for reuse and collaboration
+```
+
 
 ## Getting Started
 
