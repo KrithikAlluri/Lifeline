@@ -73,26 +73,42 @@ class MainWindow(QMainWindow):
     def medical_style(self):
         return """
             QWidget {
-                background: #f8fbff;
-                font-size: 20px;
-                color: #222;
+                background: #fafdff;
+                font-size: 22px;
+                color: #1a237e;
             }
             QPushButton {
                 background: #1976d2;
                 color: white;
-                border-radius: 12px;
-                padding: 18px;
-                font-size: 22px;
+                border-radius: 18px;
+                padding: 20px 0px;
+                font-size: 24px;
+                margin: 10px 0px;
+                min-height: 56px;
             }
             QPushButton:pressed {
                 background: #1565c0;
             }
             QLineEdit, QComboBox, QCheckBox {
-                font-size: 20px;
-                padding: 10px;
+                font-size: 22px;
+                padding: 16px;
+                border-radius: 10px;
+                border: 1px solid #b0bec5;
+                margin-bottom: 12px;
             }
             QLabel {
-                font-size: 22px;
+                font-size: 24px;
+                margin-bottom: 8px;
+            }
+            QTableWidget {
+                font-size: 20px;
+                background: #ffffff;
+                border-radius: 10px;
+            }
+            QHeaderView::section {
+                background: #e3f2fd;
+                font-size: 20px;
+                border-radius: 8px;
             }
         """
 
