@@ -1,0 +1,3 @@
+test_id,username,timestamp,glucose,value,status,iron,value,status,b12,value,status
+1,krithik,2025-07-22 09:30,101,mg/dL,normal,95,ug/dL,low,315,pg/mL,normal
+2,janesmith,2025-07-22 10:30,99,mg/dL,normal,101,ug/dL,normal,332,pg/mL,normal
