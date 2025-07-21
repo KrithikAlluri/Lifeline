@@ -1,0 +1,26 @@
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QLineEdit, QPushButton
+
+class CreateUserPage(QWidget):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        layout = QVBoxLayout()
+        layout.addWidget(QLabel('Create New User'))
+        self.name_input = QLineEdit()
+        self.name_input.setPlaceholderText('Name')
+        layout.addWidget(self.name_input)
+        self.password_input = QLineEdit()
+        self.password_input.setPlaceholderText('Password')
+        self.password_input.setEchoMode(QLineEdit.Password)
+        layout.addWidget(self.password_input)
+        self.confirm_input = QLineEdit()
+        self.confirm_input.setPlaceholderText('Confirm Password')
+        self.confirm_input.setEchoMode(QLineEdit.Password)
+        layout.addWidget(self.confirm_input)
+        self.email_input = QLineEdit()
+        self.email_input.setPlaceholderText('Email (optional)')
+        layout.addWidget(self.email_input)
+        self.create_button = QPushButton('Create')
+        layout.addWidget(self.create_button)
+        self.cancel_button = QPushButton('Cancel')
+        layout.addWidget(self.cancel_button)
+        self.setLayout(layout)
