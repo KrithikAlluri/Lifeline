@@ -50,30 +50,29 @@ class ResultsPage(QWidget):
         if tests.empty:
             self.info_label.setText("No test results.")
             self.table.setRowCount(0)
+            self.table.setColumnCount(0)
             return
         last = tests.iloc[-1]
         self.info_label.setText(f"User: {user} | Test ID: {last['test_id']} | {last['timestamp']}")
-        # Show only biomarker columns
-        biomarker_cols = [c for c in tests.columns if c not in ('test_id','username','timestamp')]
-        self.table.setRowCount(len(biomarker_cols)//3)
+        # Find all biomarkers in this test (exclude id, username, timestamp, and any empty columns)
+        biomarker_names = [col for col in tests.columns if not col.endswith('_unit') and not col.endswith('_status') and col not in ('test_id','username','timestamp') and pd.notnull(last.get(col,'')) and str(last.get(col,'')) != '']
+        self.table.setRowCount(len(biomarker_names))
         self.table.setColumnCount(3)
         self.table.setHorizontalHeaderLabels(['Biomarker','Value','Status'])
-        for i in range(0, len(biomarker_cols), 3):
-            biomarker = biomarker_cols[i]
-            value = last[biomarker]
-            unit = last[biomarker_cols[i+1]]
-            status = last[biomarker_cols[i+2]]
-            row = i//3
-            self.table.setItem(row, 0, QTableWidgetItem(str(biomarker)))
-            self.table.setItem(row, 1, QTableWidgetItem(f"{value} {unit}"))
+        for row_idx, biomarker in enumerate(biomarker_names):
+            value = last.get(biomarker, '')
+            unit = last.get(f'{biomarker}_unit', '')
+            status = last.get(f'{biomarker}_status', '')
+            self.table.setItem(row_idx, 0, QTableWidgetItem(str(biomarker)))
+            self.table.setItem(row_idx, 1, QTableWidgetItem(f"{value} {unit}"))
             item = QTableWidgetItem(str(status))
             if status == 'low':
                 item.setBackground(QColor('#ffcccc'))
             elif status == 'high':
                 item.setBackground(QColor('#ffe082'))
-            else:
+            elif status == 'normal':
                 item.setBackground(QColor('#c8e6c9'))
-            self.table.setItem(row, 2, item)
+            self.table.setItem(row_idx, 2, item)
         # Hide email button if no email
         users = CsvManager.read_users()
         user_row = users[users['username'].str.lower() == user.lower()]

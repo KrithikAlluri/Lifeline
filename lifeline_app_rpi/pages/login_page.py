@@ -1,4 +1,6 @@
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QLineEdit, QPushButton, QComboBox, QMessageBox
+from PyQt5.QtGui import QPixmap
+from PyQt5.QtCore import Qt
 from managers.csv_manager import CsvManager
 from managers.encryption_manager import EncryptionManager
 
@@ -10,6 +12,13 @@ class LoginPage(QWidget):
 
     def init_ui(self):
         layout = QVBoxLayout()
+        # Add logo at the top
+        self.logo_label = QLabel()
+        pixmap = QPixmap('imgs/logo.jpg')
+        if not pixmap.isNull():
+            self.logo_label.setPixmap(pixmap.scaledToWidth(450))
+            self.logo_label.setAlignment(Qt.AlignHCenter)
+        layout.addWidget(self.logo_label)
         layout.addWidget(QLabel("Select User:"))
         self.user_combo = QComboBox()
         self.refresh_users()
@@ -18,6 +27,7 @@ class LoginPage(QWidget):
         self.password_edit = QLineEdit()
         self.password_edit.setEchoMode(QLineEdit.Password)
         layout.addWidget(self.password_edit)
+        self.password_edit.returnPressed.connect(self.try_login)
         self.login_btn = QPushButton("Login")
         self.login_btn.clicked.connect(self.try_login)
         layout.addWidget(self.login_btn)

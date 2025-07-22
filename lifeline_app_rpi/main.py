@@ -9,7 +9,7 @@ from pages.dashboard_page import DashboardPage
 from pages.new_test_wizard_page import NewTestWizardPage
 from pages.results_page import ResultsPage
 from pages.settings_page import SettingsPage
-from chatbot.chatbot_widget import ChatbotWidget
+from pages.chatbot_page import ChatbotPage
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -28,6 +28,7 @@ class MainWindow(QMainWindow):
         self.new_test_wizard_page = NewTestWizardPage(self)
         self.results_page = ResultsPage(self)
         self.settings_page = SettingsPage(self)
+        self.chatbot_page = ChatbotPage(self)
 
         # Add pages to stack
         self.stack.addWidget(self.login_page)
@@ -36,12 +37,7 @@ class MainWindow(QMainWindow):
         self.stack.addWidget(self.new_test_wizard_page)
         self.stack.addWidget(self.results_page)
         self.stack.addWidget(self.settings_page)
-
-        # Chatbot dock
-        self.chatbot_dock = QDockWidget("Chatbot", self)
-        self.chatbot_dock.setWidget(ChatbotWidget(self))
-        self.chatbot_dock.setFeatures(QDockWidget.NoDockWidgetFeatures)
-        self.addDockWidget(Qt.RightDockWidgetArea, self.chatbot_dock)
+        self.stack.addWidget(self.chatbot_page)
 
         self.show_login()
 
@@ -57,6 +53,7 @@ class MainWindow(QMainWindow):
         self.current_user = self.login_page.user_combo.currentText()
         self.dashboard_page.refresh()
         self.stack.setCurrentWidget(self.dashboard_page)
+        self.dashboard_page.set_chatbot_button_visible(True)
 
     def show_new_test(self):
         self.new_test_wizard_page.refresh()
@@ -70,29 +67,55 @@ class MainWindow(QMainWindow):
         self.settings_page.refresh()
         self.stack.setCurrentWidget(self.settings_page)
 
+    def show_chatbot(self):
+        self.chatbot_page.open_chatbot()
+        self.stack.setCurrentWidget(self.chatbot_page)
+
+    def toggle_chatbot(self):
+        if self.chatbot_dock.isVisible():
+            self.chatbot_dock.hide()
+        else:
+            self.chatbot_dock.show()
+
     def medical_style(self):
         return """
             QWidget {
-                background: #f8fbff;
-                font-size: 20px;
-                color: #222;
+                background: #fafdff;
+                font-size: 22px;
+                color: #1a237e;
             }
             QPushButton {
                 background: #1976d2;
                 color: white;
-                border-radius: 12px;
-                padding: 18px;
-                font-size: 22px;
+                border-radius: 14px;
+                padding: 10px 0px;
+                font-size: 20px;
+                margin: 6px 0px;
+                min-height: 40px;
             }
             QPushButton:pressed {
                 background: #1565c0;
             }
             QLineEdit, QComboBox, QCheckBox {
                 font-size: 20px;
-                padding: 10px;
+                padding: 12px;
+                border-radius: 8px;
+                border: 1px solid #b0bec5;
+                margin-bottom: 10px;
             }
             QLabel {
                 font-size: 22px;
+                margin-bottom: 6px;
+            }
+            QTableWidget {
+                font-size: 18px;
+                background: #ffffff;
+                border-radius: 8px;
+            }
+            QHeaderView::section {
+                background: #e3f2fd;
+                font-size: 18px;
+                border-radius: 6px;
             }
         """
 

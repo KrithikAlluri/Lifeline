@@ -90,8 +90,8 @@ class NewTestWizardPage(QWidget):
                 value = random.randint(80, 120)
                 status = 'normal'
                 row[f'{biomarker}'] = value
-                row[f'value'] = unit
-                row[f'status'] = status
+                row[f'{biomarker}_unit'] = unit
+                row[f'{biomarker}_status'] = status
         CsvManager.add_test(row)
         QMessageBox.information(self, "Test Complete", "Test results saved.")
         self.parent.show_results()

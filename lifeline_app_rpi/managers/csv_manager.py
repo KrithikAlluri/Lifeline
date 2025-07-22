@@ -44,7 +44,7 @@ class CsvManager:
         if username.lower() in [u.lower() for u in df['username']]:
             raise ValueError('Username already exists')
         new_row = {'username': username, 'password_hash': password_hash, 'email': email or ''}
-        df = df.append(new_row, ignore_index=True)
+        df = pd.concat([df, pd.DataFrame([new_row])], ignore_index=True)
         CsvManager.write_users(df)
 
     @staticmethod
@@ -66,7 +66,7 @@ class CsvManager:
     @staticmethod
     def add_test(test_row):
         df = CsvManager.read_tests()
-        df = df.append(test_row, ignore_index=True)
+        df = pd.concat([df, pd.DataFrame([test_row])], ignore_index=True)
         CsvManager.write_tests(df)
 
     @staticmethod
