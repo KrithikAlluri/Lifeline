@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QPushButton, QCheckBox, QProgressBar, QMessageBox
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QPushButton, QCheckBox, QProgressBar, QMessageBox, QScrollArea
 from PyQt5.QtCore import QTimer
 from managers.csv_manager import CsvManager
 import datetime
@@ -25,7 +25,11 @@ class NewTestWizardPage(QWidget):
         self.init_ui()
 
     def init_ui(self):
-        layout = QVBoxLayout()
+        main_layout = QVBoxLayout()
+        scroll = QScrollArea()
+        scroll.setWidgetResizable(True)
+        form_widget = QWidget()
+        layout = QVBoxLayout(form_widget)
         self.user_label = QLabel()
         layout.addWidget(self.user_label)
         layout.addWidget(QLabel("Select up to 10 biomarkers:"))
@@ -40,7 +44,9 @@ class NewTestWizardPage(QWidget):
         self.progress = QProgressBar()
         self.progress.setValue(0)
         layout.addWidget(self.progress)
-        self.setLayout(layout)
+        scroll.setWidget(form_widget)
+        main_layout.addWidget(scroll)
+        self.setLayout(main_layout)
 
     def refresh(self):
         user = getattr(self.parent, 'current_user', None)

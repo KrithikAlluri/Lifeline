@@ -15,7 +15,10 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Lifeline Blood Testing Kit")
-        self.setMinimumSize(800, 480)
+        # 5x2.5 inch at 160 DPI, portrait = 400x800 px
+        self.setMinimumSize(400, 800)
+        self.setFixedSize(400, 800)
+        # self.setBaseSize(400, 800)
         self.setStyleSheet(self.medical_style())
         self.current_user = None
         self.stack = QStackedWidget()

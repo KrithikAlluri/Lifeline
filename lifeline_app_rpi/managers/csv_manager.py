@@ -39,11 +39,25 @@ class CsvManager:
             df.to_csv(TESTS_CSV, index=False)
 
     @staticmethod
-    def add_user(username, password_hash, email=None):
+    def add_user(username, password_hash, email=None, age=None, sex=None, weight=None, height=None, smoking=None, alcohol=None, exercise=None, diet=None, conditions=None, medications=None):
         df = CsvManager.read_users()
         if username.lower() in [u.lower() for u in df['username']]:
             raise ValueError('Username already exists')
-        new_row = {'username': username, 'password_hash': password_hash, 'email': email or ''}
+        new_row = {
+            'username': username,
+            'password_hash': password_hash,
+            'email': email or '',
+            'age': age or '',
+            'sex': sex or '',
+            'weight': weight or '',
+            'height': height or '',
+            'smoking': smoking or '',
+            'alcohol': alcohol or '',
+            'exercise': exercise or '',
+            'diet': diet or '',
+            'conditions': conditions or '',
+            'medications': medications or ''
+        }
         df = pd.concat([df, pd.DataFrame([new_row])], ignore_index=True)
         CsvManager.write_users(df)
 
