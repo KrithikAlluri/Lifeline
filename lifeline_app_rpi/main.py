@@ -16,8 +16,8 @@ class MainWindow(QMainWindow):
         super().__init__()
         self.setWindowTitle("Lifeline Blood Testing Kit")
         # 5x2.5 inch at 160 DPI, portrait = 400x800 px
-        self.setMinimumSize(400, 800)
-        self.setFixedSize(400, 800)
+        self.setMinimumSize(400, 750)
+        # self.setFixedSize(400, 750)
         # self.setBaseSize(400, 800)
         self.setStyleSheet(self.medical_style())
         self.current_user = None

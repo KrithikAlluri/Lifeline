@@ -1,5 +1,7 @@
-test_id,username,timestamp,glucose,value,status,iron,value.1,status.1,b12,value.2,status.2,cholesterol,calcium,potassium,magnesium,zinc,glucose_unit,glucose_status,iron_unit,iron_status,b12_unit,b12_status,cholesterol_unit,cholesterol_status,calcium_unit,calcium_status,vitamin D,vitamin D_unit,vitamin D_status,potassium_unit,potassium_status,sodium,sodium_unit,sodium_status,magnesium_unit,magnesium_status,zinc_unit,zinc_status
-1,krithik,2025-07-22 09:30,101,mg/dL,normal,95,ug/dL,low,315,pg/mL,normal,,,,,,,,,,,,,,,,,,,,,,,,,,,
-2,janesmith,2025-07-22 10:30,99,mg/dL,normal,101,ug/dL,normal,332,pg/mL,normal,,,,,,,,,,,,,,,,,,,,,,,,,,,
-1753117700,Krithik1,2025-07-21 13:08,107,ug/dL,normal,119,,,110,,,87.0,100.0,93.0,99.0,94.0,,,,,,,,,,,,,,,,,,,,,,
-1753123534,krithik,2025-07-21 14:45,115,,,106,,,87,,,89.0,84.0,116.0,105.0,118.0,mg/dL,normal,ug/dL,normal,pg/mL,normal,mg/dL,normal,mg/dL,normal,115.0,ng/mL,normal,mmol/L,normal,97.0,mmol/L,normal,mg/dL,normal,ug/dL,normal
+test_id,username,timestamp,glucose,value,status,iron,value.1,status.1,b12,value.2,status.2,cholesterol,calcium,potassium,magnesium,zinc,glucose_unit,glucose_status,iron_unit,iron_status,b12_unit,b12_status,cholesterol_unit,cholesterol_status,calcium_unit,calcium_status,vitamin D,vitamin D_unit,vitamin D_status,potassium_unit,potassium_status,sodium,sodium_unit,sodium_status,magnesium_unit,magnesium_status,zinc_unit,zinc_status,triglycerides,triglycerides_unit,triglycerides_status
+1,krithik,2025-07-22 09:30,101,mg/dL,normal,95.0,ug/dL,low,315.0,pg/mL,normal,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+2,janesmith,2025-07-22 10:30,99,mg/dL,normal,101.0,ug/dL,normal,332.0,pg/mL,normal,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+1753117700,Krithik1,2025-07-21 13:08,107,ug/dL,normal,119.0,,,110.0,,,87.0,100.0,93.0,99.0,94.0,,,,,,,,,,,,,,,,,,,,,,,,,
+1753123534,krithik,2025-07-21 14:45,115,,,106.0,,,87.0,,,89.0,84.0,116.0,105.0,118.0,mg/dL,normal,ug/dL,normal,pg/mL,normal,mg/dL,normal,mg/dL,normal,115.0,ng/mL,normal,mmol/L,normal,97.0,mmol/L,normal,mg/dL,normal,ug/dL,normal,,,
+1753372890,krithik,2025-07-24 12:01,94,,,101.0,,,,,,,,,,,mg/dL,normal,ug/dL,normal,,,,,,,,,,,,,,,,,,,,,
+1753380817,krithik,2025-07-24 14:13,108,,,,,,,,,,103.0,,,,mg/dL,normal,,,,,,,mg/dL,normal,,,,,,,,,,,,,100.0,mg/dL,normal

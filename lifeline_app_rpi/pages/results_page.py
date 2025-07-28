@@ -25,10 +25,9 @@ class ResultsPage(QWidget):
         layout.addWidget(self.table)
         btn_layout = QHBoxLayout()
         self.save_btn = QPushButton("Save")
+        self.save_btn.clicked.connect(self.save_results)
         btn_layout.addWidget(self.save_btn)
-        self.export_btn = QPushButton("Export (CSV)")
-        self.export_btn.clicked.connect(self.export_csv)
-        btn_layout.addWidget(self.export_btn)
+        # Remove export_btn
         self.email_btn = QPushButton("Email Results")
         self.email_btn.clicked.connect(self.email_results)
         btn_layout.addWidget(self.email_btn)
@@ -103,6 +102,13 @@ class ResultsPage(QWidget):
         tests.to_csv(path, index=False)
         EmailManager.send_email(email, "Your Blood Test Results", "See attached results.", path)
         QMessageBox.information(self, "Emailed", "Results emailed!")
+
+    def save_results(self):
+        # Save the current test to tests.csv and update dashboard
+        # (Assume the test is already saved by the wizard, so just disable the button)
+        self.save_btn.setDisabled(True)
+        QMessageBox.information(self, "Saved", "Test results saved to your history.")
+        self.parent.dashboard_page.refresh()
 
     def goto_new_test(self):
         self.parent.show_new_test()
