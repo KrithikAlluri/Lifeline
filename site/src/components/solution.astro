@@ -1,0 +1,66 @@
+---
+const solutions = [
+  {
+    title: "Portable Design",
+    description:
+      "Compact optical reader that fits in your hand. No bulky lab equipment required - take blood testing anywhere.",
+    icon: "📱",
+  },
+  {
+    title: "Disposable Cartridges",
+    description:
+      "Single-use microfluidic test strips with colorimetric assays. Simple, safe, and designed for one-time use.",
+    icon: "🧪",
+  },
+  {
+    title: "Onboard Optics",
+    description:
+      "Built-in optical sensor analyzes color changes in the test strips to measure biomarker concentrations accurately.",
+    icon: "🔬",
+  },
+  {
+    title: "Bluetooth Connectivity",
+    description:
+      "Wirelessly connect to your phone or tablet for detailed results, data logging, and remote monitoring capabilities.",
+    icon: "📶",
+  },
+  {
+    title: "DIY Assembly",
+    description:
+      "Fully open-source design with detailed instructions. Build your own Lifeline reader from readily available components.",
+    icon: "🔧",
+  },
+  {
+    title: "Under $50 BOM",
+    description:
+      "Complete bill of materials costs less than $50, making professional-grade blood testing accessible to everyone.",
+    icon: "💡",
+  },
+];
+---
+
+<div class="mt-16 md:mt-0">
+  <h2 class="text-4xl lg:text-5xl font-bold lg:tracking-tight text-gray-900 dark:text-white">
+    A Portable Lab in Your <span class="text-red-600 dark:text-red-400">Hand</span>
+  </h2>
+  <p class="text-lg mt-4 text-slate-600 dark:text-slate-300 max-w-3xl">
+    Lifeline combines microfluidic technology, optical sensing, and open-source design to create 
+    a professional-grade blood analyzer that anyone can build and use.
+  </p>
+</div>
+
+<div class="grid sm:grid-cols-2 md:grid-cols-3 mt-16 gap-16">
+  {
+    solutions.map((item) => (
+      <div class="flex gap-4 items-start">
+        <div class="mt-1 bg-red-100 dark:bg-red-900/30 rounded-full p-3 w-12 h-12 shrink-0 flex items-center justify-center">
+          <span class="text-2xl">{item.icon}</span>
+        </div>
+        <div>
+          <h3 class="font-semibold text-lg text-gray-900 dark:text-white">{item.title}</h3>{" "}
+          <p class="text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">{item.description}</p>
+        </div>
+      </div>
+    ))
+  }
+</div> 

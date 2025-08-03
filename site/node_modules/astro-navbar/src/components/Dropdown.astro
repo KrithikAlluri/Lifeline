@@ -1,0 +1,9 @@
+---
+interface Props {
+    class?: string;
+}
+const { class: className, ...rest } = Astro.props;
+---
+
+
+<menu class:list={["astronav-dropdown", className]} {...rest} aria-expanded="false"><slot/></menu>

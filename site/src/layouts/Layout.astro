@@ -1,0 +1,105 @@
+---
+import { SEO } from "astro-seo";
+import Footer from "@/components/footer.astro";
+import Navbar from "@/components/navbar/navbar.astro";
+import "@fontsource-variable/inter/index.css";
+import "@fontsource-variable/bricolage-grotesque";
+import "../styles/global.css";
+
+export interface Props {
+  title: string;
+}
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
+
+const resolvedImageWithDomain = new URL(
+  "/opengraph.jpg",
+  Astro.site
+).toString();
+
+const { title } = Astro.props;
+
+const makeTitle = title
+  ? title + " | " + "Lifeline"
+  : "Lifeline - Blood Testing, Anywhere. Under $50.";
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- <link rel="preload" as="image" href={src} alt="Hero" /> -->
+    <SEO
+      title={makeTitle}
+      description="Lifeline is a low-cost, home-fabricated blood analyzer for essential biomarkers, built for students, clinics, and communities."
+      canonical={canonicalURL}
+      twitter={{
+        creator: "@lifeline",
+        site: "@lifeline",
+        card: "summary_large_image",
+      }}
+      openGraph={{
+        basic: {
+          url: canonicalURL,
+          type: "website",
+          title: `Lifeline - Blood Testing, Anywhere. Under $50.`,
+          image: resolvedImageWithDomain,
+        },
+        image: {
+          alt: "Lifeline Blood Testing Device",
+        },
+      }}
+    />
+    <script is:inline>
+      // Initialize dark mode on page load
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        document.documentElement.classList.toggle('dark', theme === 'dark');
+      })();
+    </script>
+  </head>
+  <body class="bg-white dark:bg-gray-900">
+    <Navbar />
+    <slot />
+    <Footer />
+    <style is:global>
+      /* Improve Page speed */
+      /* https://css-tricks.com/almanac/properties/c/content-visibility/ */
+      img {
+        content-visibility: auto;
+      }
+    </style>
+    <script is:inline>
+      // Dark mode toggle functionality
+      function setupDarkModeToggle() {
+        const toggleButtons = document.querySelectorAll('#dark-mode-toggle, #dark-mode-toggle-desktop');
+        
+        toggleButtons.forEach(button => {
+          button.addEventListener('click', function() {
+            const html = document.documentElement;
+            const isDark = html.classList.contains('dark');
+            
+            // Toggle the dark class
+            html.classList.toggle('dark', !isDark);
+            
+            // Save to localStorage
+            localStorage.setItem('theme', !isDark ? 'dark' : 'light');
+            
+            console.log('Theme switched to:', !isDark ? 'dark' : 'light');
+          });
+        });
+      }
+      
+      // Setup when DOM is ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupDarkModeToggle);
+      } else {
+        setupDarkModeToggle();
+      }
+    </script>
+  </body>
+</html>

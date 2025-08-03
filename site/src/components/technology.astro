@@ -1,0 +1,106 @@
+---
+const biomarkers = [
+  {
+    name: "Glucose",
+    method: "GOx assay",
+    description: "Blood sugar levels for diabetes monitoring",
+    icon: "🩸",
+  },
+  {
+    name: "Creatinine",
+    method: "Jaffe reaction",
+    description: "Kidney function indicator",
+    icon: "🫁",
+  },
+  {
+    name: "Urea (BUN)",
+    method: "Urease method",
+    description: "Blood urea nitrogen for kidney health",
+    icon: "💧",
+  },
+  {
+    name: "Potassium",
+    method: "Ion-selective",
+    description: "Electrolyte balance measurement",
+    icon: "⚡",
+  },
+  {
+    name: "Albumin",
+    method: "BCG method",
+    description: "Liver and kidney function marker",
+    icon: "🫀",
+  },
+  {
+    name: "Hemoglobin",
+    method: "Colorimetric",
+    description: "Blood oxygen carrying capacity",
+    icon: "🩸",
+  },
+  {
+    name: "Uric Acid",
+    method: "Uricase method",
+    description: "Gout and kidney function indicator",
+    icon: "🧬",
+  },
+  {
+    name: "Vitamin B12",
+    method: "Competitive binding",
+    description: "Nutritional status assessment",
+    icon: "💊",
+  },
+];
+---
+
+<div class="mt-16 md:mt-0">
+  <h2 class="text-4xl lg:text-5xl font-bold lg:tracking-tight text-gray-900 dark:text-white">
+    Built for <span class="text-red-600 dark:text-red-400">Accessibility</span>
+  </h2>
+  <p class="text-lg mt-4 text-slate-600 dark:text-slate-300 max-w-3xl">
+    Lifeline supports essential biomarkers using proven colorimetric methods. 
+    Fully open-source design with &lt;$50 bill of materials.
+  </p>
+</div>
+
+<div class="mt-16">
+  <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-8">
+    {
+      biomarkers.map((item) => (
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-md transition-shadow">
+          <div class="flex items-center gap-3 mb-3">
+            <span class="text-2xl">{item.icon}</span>
+            <h3 class="font-semibold text-lg text-gray-900 dark:text-white">{item.name}</h3>
+          </div>
+          <p class="text-sm text-red-600 dark:text-red-400 font-medium mb-2">{item.method}</p>
+          <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">{item.description}</p>
+        </div>
+      ))
+    }
+  </div>
+</div>
+
+<div class="mt-16 bg-red-50 dark:bg-red-900/20 rounded-2xl p-8">
+  <div class="grid md:grid-cols-2 gap-8">
+    <div>
+      <h3 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Open Source Design</h3>
+      <p class="text-slate-600 dark:text-slate-300 mb-4">
+        Complete schematics, PCB designs, and assembly instructions are freely available. 
+        Build, modify, and improve Lifeline for your specific needs.
+      </p>
+      <div class="flex gap-4">
+        <a href="#" class="text-red-600 dark:text-red-400 font-semibold hover:text-red-700 dark:hover:text-red-300">View on GitHub →</a>
+        <a href="#" class="text-red-600 dark:text-red-400 font-semibold hover:text-red-700 dark:hover:text-red-300">Documentation →</a>
+      </div>
+    </div>
+    <div>
+      <h3 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Under $50 BOM</h3>
+      <p class="text-slate-600 dark:text-slate-300 mb-4">
+        Complete bill of materials costs less than $50, making professional-grade blood testing 
+        accessible to students, researchers, and communities worldwide.
+      </p>
+      <div class="flex gap-4">
+        <a href="#" class="text-red-600 dark:text-red-400 font-semibold hover:text-red-700 dark:hover:text-red-300">View BOM →</a>
+        <a href="#" class="text-red-600 dark:text-red-400 font-semibold hover:text-red-700 dark:hover:text-red-300">Assembly Guide →</a>
+      </div>
+    </div>
+  </div>
+</div> 

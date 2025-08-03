@@ -1,0 +1,46 @@
+---
+import Link from "@/components/ui/link.astro";
+---
+
+<main
+  class="grid lg:grid-cols-2 place-items-center pt-16 pb-8 md:pt-12 md:pb-24">
+  <div class="py-6 md:order-1 hidden md:block">
+    <div class="relative">
+      <div class="w-80 h-80 bg-gradient-to-br from-red-500 to-red-700 rounded-2xl shadow-2xl flex items-center justify-center">
+        <div class="text-white text-center">
+          <div class="w-16 h-16 mx-auto mb-4 text-6xl">💧</div>
+          <p class="text-lg font-semibold">Lifeline Reader</p>
+          <p class="text-sm opacity-80">Portable Blood Analyzer</p>
+        </div>
+      </div>
+      <div class="absolute -top-4 -right-4 w-24 h-24 bg-white dark:bg-gray-800 rounded-full shadow-lg flex items-center justify-center">
+        <div class="w-8 h-8 text-red-500 text-2xl">🧪</div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <h1
+      class="text-5xl lg:text-6xl xl:text-7xl font-bold lg:tracking-tight xl:tracking-tighter text-gray-900 dark:text-white">
+      Blood Testing, <span class="text-red-600 dark:text-red-400">Anywhere.</span> Under $50.
+    </h1>
+    <p class="text-lg mt-4 text-slate-600 dark:text-slate-300 max-w-xl">
+      Lifeline is a low-cost, home-fabricated blood analyzer for essential biomarkers, built for students, clinics, and communities.
+    </p>
+    <div class="mt-6 flex flex-col sm:flex-row gap-3">
+      <Link
+        href="#how-it-works"
+        class="flex gap-1 items-center justify-center">
+        <span class="text-white w-5 h-5">▶</span>
+        See How It Works
+      </Link>
+      <Link
+        size="lg"
+        style="outline"
+        href="#join-mission"
+        class="flex gap-1 items-center justify-center">
+        <span class="text-black dark:text-white w-4 h-4">🔔</span>
+        Get Notified
+      </Link>
+    </div>
+  </div>
+</main>

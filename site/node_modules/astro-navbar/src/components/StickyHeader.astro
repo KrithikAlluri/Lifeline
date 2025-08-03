@@ -1,0 +1,69 @@
+---
+interface Props {
+  scrollY?: number;
+  activeClass?: string;
+  defaultClass?: string;
+  class?: string;
+}
+const {
+  scrollY = 100,
+  defaultClass = "",
+  activeClass = "",
+  class: className = "",
+  ...rest
+} = Astro.props;
+---
+
+<header
+  class:list={["astronav-sticky-header", className, defaultClass]}
+  {...rest}>
+  <slot />
+</header>
+
+<script
+  is:inline
+  data-astro-rerun
+  define:vars={{ scrollY, defaultClass, activeClass }}
+>
+  // @ts-nocheck
+  let lastKnownScrollPosition = 0;
+  let ticking = false;
+
+  const header = document.querySelector(".astronav-sticky-header");
+
+  // Define two different scroll positions
+  const addScrollY = Math.max(scrollY, 50); // Scroll position to add active class
+  const removeScrollY = Math.max(scrollY - 50, 10); // Scroll position to remove active class
+
+  function updateAnimation(scrollPos) {
+    if (scrollPos > addScrollY) {
+      header.classList.remove(...defaultClass.split(" "));
+      header.classList.add("is-active", ...activeClass.split(" "));
+      header.setAttribute("active", "");
+    } else if (scrollPos < removeScrollY) {
+      header.classList.remove("is-active", ...activeClass.split(" "));
+      header.classList.add(...defaultClass.split(" "));
+      header.removeAttribute("active");
+    }
+  }
+
+  window.addEventListener("scroll", function () {
+    lastKnownScrollPosition = window.scrollY;
+    if (!ticking) {
+      window.requestAnimationFrame(function () {
+        updateAnimation(lastKnownScrollPosition);
+        ticking = false;
+      });
+
+      ticking = true;
+    }
+  });
+</script>
+
+<style>
+  .astronav-sticky-header {
+    transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    will-change: transform;
+  }
+</style>

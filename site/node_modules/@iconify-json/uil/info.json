@@ -1,0 +1,29 @@
+{
+	"prefix": "uil",
+	"name": "Unicons",
+	"total": 1215,
+	"version": "4.2.0",
+	"author": {
+		"name": "Iconscout",
+		"url": "https://github.com/Iconscout/unicons"
+	},
+	"license": {
+		"title": "Apache 2.0",
+		"spdx": "Apache-2.0",
+		"url": "https://github.com/Iconscout/unicons/blob/master/LICENSE"
+	},
+	"samples": [
+		"arrow-circle-right",
+		"chat-bubble-user",
+		"edit-alt",
+		"grids",
+		"ellipsis-v",
+		"bars"
+	],
+	"height": 24,
+	"category": "UI 24px",
+	"tags": [
+		"Has Padding"
+	],
+	"palette": false
+}

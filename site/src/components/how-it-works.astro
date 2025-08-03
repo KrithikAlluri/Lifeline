@@ -1,0 +1,65 @@
+---
+const steps = [
+  {
+    step: "1",
+    title: "Prick finger and add blood",
+    description:
+      "Use the included lancet to prick your finger and collect a small drop of blood. Apply it to the designated area on the test strip.",
+    icon: "🩸",
+  },
+  {
+    step: "2",
+    title: "Insert cartridge into reader",
+    description:
+      "Place the prepared test strip into the Lifeline reader cartridge slot. The device will automatically detect the strip and begin analysis.",
+    icon: "📱",
+  },
+  {
+    step: "3",
+    title: "Optical sensor analyzes",
+    description:
+      "The built-in optical sensor measures color changes in the test strip, converting them into quantitative biomarker measurements.",
+    icon: "🔬",
+  },
+  {
+    step: "4",
+    title: "Results displayed",
+    description:
+      "View your biomarker results directly on the device screen or connect via Bluetooth to see detailed data on your phone.",
+    icon: "📊",
+  },
+];
+---
+
+<div id="how-it-works" class="mt-16 md:mt-0">
+  <h2 class="text-4xl lg:text-5xl font-bold lg:tracking-tight text-gray-900 dark:text-white">
+    How It <span class="text-red-600 dark:text-red-400">Works</span>
+  </h2>
+  <p class="text-lg mt-4 text-slate-600 dark:text-slate-300 max-w-3xl">
+    Four simple steps to professional-grade blood analysis. No training required, no complex procedures.
+  </p>
+</div>
+
+<div class="grid sm:grid-cols-2 md:grid-cols-2 mt-16 gap-16">
+  {
+    steps.map((item) => (
+      <div class="relative">
+        <div class="flex gap-4 items-start">
+          <div class="mt-1 bg-red-600 text-white rounded-full p-4 w-16 h-16 shrink-0 flex items-center justify-center font-bold text-xl">
+            {item.step}
+          </div>
+          <div class="flex-1">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="text-3xl">{item.icon}</span>
+              <h3 class="font-semibold text-lg text-gray-900 dark:text-white">{item.title}</h3>
+            </div>
+            <p class="text-slate-500 dark:text-slate-400 leading-relaxed">{item.description}</p>
+          </div>
+        </div>
+        {item.step !== "4" && (
+          <div class="hidden md:block absolute top-16 left-8 w-0.5 h-16 bg-red-200 dark:bg-red-800"></div>
+        )}
+      </div>
+    ))
+  }
+</div> 

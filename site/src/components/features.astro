@@ -1,0 +1,57 @@
+---
+// @ts-ignore
+import { Icon } from "astro-icon/components";
+
+const problems = [
+  {
+    title: "Global Diagnostic Gap",
+    description:
+      "Over 4 billion people lack access to basic diagnostic testing. Early detection of biomarkers can save lives, but current solutions are too expensive and inaccessible.",
+    icon: "🌍",
+  },
+  {
+    title: "Cost Barrier",
+    description:
+      "Traditional blood testing requires expensive lab equipment and trained technicians, making it inaccessible to communities that need it most.",
+    icon: "💰",
+  },
+  {
+    title: "Geographic Isolation",
+    description:
+      "Rural clinics, disaster zones, and developing regions often lack the infrastructure for comprehensive blood analysis, leaving patients without critical health information.",
+    icon: "🏥",
+  },
+  {
+    title: "Educational Barriers",
+    description:
+      "Students and researchers need affordable access to blood testing for learning and innovation, but current solutions are prohibitively expensive.",
+    icon: "🎓",
+  },
+];
+---
+
+<div class="mt-16 md:mt-0">
+  <h2 class="text-4xl lg:text-5xl font-bold lg:tracking-tight text-gray-900 dark:text-white">
+    Why <span class="text-red-600 dark:text-red-400">Lifeline</span>?
+  </h2>
+  <p class="text-lg mt-4 text-slate-600 dark:text-slate-300 max-w-3xl">
+    The world faces a critical gap in diagnostic access. Early biomarker detection saves lives, 
+    but current solutions are too expensive and inaccessible for the communities that need them most.
+  </p>
+</div>
+
+<div class="grid sm:grid-cols-2 md:grid-cols-2 mt-16 gap-16">
+  {
+    problems.map((item) => (
+      <div class="flex gap-4 items-start">
+        <div class="mt-1 bg-red-100 dark:bg-red-900/30 rounded-full p-3 w-12 h-12 shrink-0 flex items-center justify-center">
+          <span class="text-2xl">{item.icon}</span>
+        </div>
+        <div>
+          <h3 class="font-semibold text-lg text-gray-900 dark:text-white">{item.title}</h3>{" "}
+          <p class="text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">{item.description}</p>
+        </div>
+      </div>
+    ))
+  }
+</div>
