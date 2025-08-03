@@ -12,4 +12,11 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
+  server: {
+    port: 4321,
+  },
+  // Serve docsify documentation
+  public: {
+    docs: "./docs"
+  }
 });

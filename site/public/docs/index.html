@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lifeline Documentation</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="Complete documentation for Lifeline - a $50 DIY blood testing kit">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+  <style>
+    .app-nav {
+      background: #dc2626;
+    }
+    .app-nav a {
+      color: white !important;
+    }
+    .sidebar {
+      background: #f8fafc;
+    }
+    .sidebar-nav > ul > li > p {
+      color: #dc2626;
+      font-weight: bold;
+    }
+    .markdown-section h1 {
+      color: #dc2626;
+    }
+    .markdown-section h2 {
+      color: #dc2626;
+      border-bottom: 2px solid #dc2626;
+    }
+    .markdown-section h3 {
+      color: #dc2626;
+    }
+    .markdown-section code {
+      background: #f1f5f9;
+      color: #dc2626;
+    }
+    .markdown-section pre {
+      background: #1e293b;
+      color: #e2e8f0;
+    }
+    .markdown-section blockquote {
+      border-left: 4px solid #dc2626;
+      background: #fef2f2;
+    }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+  <script>
+    window.$docsify = {
+      name: 'Lifeline Documentation',
+      repo: 'https://github.com/KrithikAlluri/Lifeline',
+      loadSidebar: true,
+      subMaxLevel: 3,
+      auto2top: true,
+      search: {
+        maxAge: 86400000,
+        paths: 'auto',
+        placeholder: 'Search documentation...',
+        noData: 'No results found',
+        depth: 6
+      },
+      plugins: [
+        function(hook, vm) {
+          hook.afterEach(function(html) {
+            return html + '<hr><p><small>Documentation for Lifeline - Blood Testing, Anywhere. Under $50.</small></p>';
+          });
+        }
+      ]
+    }
+  </script>
+  <!-- Docsify v4 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+</body>
+</html>

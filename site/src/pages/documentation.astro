@@ -15,6 +15,18 @@ import Layout from "@/layouts/Layout.astro";
         </p>
       </div>
 
+      <div class="bg-red-50 rounded-2xl p-8 mb-16">
+        <h2 class="text-3xl font-bold mb-6 text-gray-900">Interactive Documentation</h2>
+        <p class="text-slate-600 mb-8 max-w-2xl">
+          Access our comprehensive documentation with search, navigation, and interactive features.
+        </p>
+        <div class="text-center">
+          <a href="/docs" class="bg-red-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-red-700 transition-colors inline-block">
+            Open Documentation Portal
+          </a>
+        </div>
+      </div>
+
       <div class="grid md:grid-cols-2 gap-8 mb-16">
         <div class="bg-white rounded-lg p-8 shadow-sm border border-gray-100">
           <h2 class="text-2xl font-bold mb-4 text-gray-900">Assembly Guide</h2>
@@ -23,19 +35,19 @@ import Layout from "@/layouts/Layout.astro";
           </p>
           <div class="space-y-3">
             <div class="flex items-center gap-3">
-              <span class="text-red-600">📋</span>
+              <span class="text-red-600 font-bold">•</span>
               <span class="text-slate-600">Component list and sourcing</span>
             </div>
             <div class="flex items-center gap-3">
-              <span class="text-red-600">🔧</span>
+              <span class="text-red-600 font-bold">•</span>
               <span class="text-slate-600">PCB assembly instructions</span>
             </div>
             <div class="flex items-center gap-3">
-              <span class="text-red-600">⚙️</span>
+              <span class="text-red-600 font-bold">•</span>
               <span class="text-slate-600">Calibration and testing</span>
             </div>
           </div>
-          <a href="#" class="inline-block mt-6 text-red-600 font-semibold hover:text-red-700">
+          <a href="/docs/#/assembly" class="inline-block mt-6 text-red-600 font-semibold hover:text-red-700">
             View Assembly Guide →
           </a>
         </div>
@@ -47,21 +59,81 @@ import Layout from "@/layouts/Layout.astro";
           </p>
           <div class="space-y-3">
             <div class="flex items-center gap-3">
-              <span class="text-red-600">📐</span>
+              <span class="text-red-600 font-bold">•</span>
               <span class="text-slate-600">PCB schematics and layouts</span>
             </div>
             <div class="flex items-center gap-3">
-              <span class="text-red-600">💻</span>
+              <span class="text-red-600 font-bold">•</span>
               <span class="text-slate-600">Firmware and software</span>
             </div>
             <div class="flex items-center gap-3">
-              <span class="text-red-600">📊</span>
+              <span class="text-red-600 font-bold">•</span>
               <span class="text-slate-600">Performance specifications</span>
             </div>
           </div>
-          <a href="#" class="inline-block mt-6 text-red-600 font-semibold hover:text-red-700">
+          <a href="/docs/#/technical-specs" class="inline-block mt-6 text-red-600 font-semibold hover:text-red-700">
             View Specifications →
           </a>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-lg p-8 shadow-sm border border-gray-100 mb-16">
+        <h2 class="text-3xl font-bold mb-6 text-gray-900">Documentation Sections</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div>
+            <h3 class="text-xl font-semibold mb-3 text-gray-900">Getting Started</h3>
+            <p class="text-slate-600 mb-4">
+              First-time setup and calibration procedures.
+            </p>
+            <a href="/docs/#/getting-started" class="text-red-600 font-semibold hover:text-red-700">
+              Read Guide →
+            </a>
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold mb-3 text-gray-900">User Manual</h3>
+            <p class="text-slate-600 mb-4">
+              Operating procedures and maintenance guides.
+            </p>
+            <a href="/docs/#/user-manual" class="text-red-600 font-semibold hover:text-red-700">
+              Read Manual →
+            </a>
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold mb-3 text-gray-900">μPAD Fabrication</h3>
+            <p class="text-slate-600 mb-4">
+              Step-by-step μPAD fabrication protocol.
+            </p>
+            <a href="/docs/#/micropad-fabrication" class="text-red-600 font-semibold hover:text-red-700">
+              View Protocol →
+            </a>
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold mb-3 text-gray-900">Electrochemical Assays</h3>
+            <p class="text-slate-600 mb-4">
+              EC sensor setup and operation instructions.
+            </p>
+            <a href="/docs/#/electrochemical-assays" class="text-red-600 font-semibold hover:text-red-700">
+              Read Guide →
+            </a>
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold mb-3 text-gray-900">Software Setup</h3>
+            <p class="text-slate-600 mb-4">
+              Firmware and mobile app installation.
+            </p>
+            <a href="/docs/#/software-setup" class="text-red-600 font-semibold hover:text-red-700">
+              Setup Guide →
+            </a>
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold mb-3 text-gray-900">Troubleshooting</h3>
+            <p class="text-slate-600 mb-4">
+              Common issues and solutions.
+            </p>
+            <a href="/docs/#/troubleshooting" class="text-red-600 font-semibold hover:text-red-700">
+              View Solutions →
+            </a>
+          </div>
         </div>
       </div>
 
@@ -91,7 +163,7 @@ import Layout from "@/layouts/Layout.astro";
             <p class="text-slate-600 mb-4">
               Guidelines for contributing to the project.
             </p>
-            <a href="#" class="text-red-600 font-semibold hover:text-red-700">
+            <a href="/docs/#/contributing" class="text-red-600 font-semibold hover:text-red-700">
               Contribute →
             </a>
           </div>
@@ -107,7 +179,7 @@ import Layout from "@/layouts/Layout.astro";
           <a href="/contact" class="bg-red-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors">
             Contact Support
           </a>
-          <a href="#" class="border border-red-600 text-red-600 px-8 py-3 rounded-lg font-semibold hover:bg-red-50 transition-colors">
+          <a href="https://github.com/KrithikAlluri/Lifeline/issues" target="_blank" rel="noopener" class="border border-red-600 text-red-600 px-8 py-3 rounded-lg font-semibold hover:bg-red-50 transition-colors">
             Report an Issue
           </a>
         </div>
