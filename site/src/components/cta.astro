@@ -1,5 +1,12 @@
 ---
 import Link from "./ui/link.astro";
+
+// Get the API key from environment variables
+const buttondownApiKey = import.meta.env.BUTTONDOWN_API;
+
+// Debug: Check if environment variable is loaded
+console.log('Server-side: API key loaded:', !!buttondownApiKey);
+console.log('Server-side: API key length:', buttondownApiKey?.length);
 ---
 
 <div id="join-mission"
@@ -12,27 +19,31 @@ import Link from "./ui/link.astro";
     and join our community of builders, researchers, and healthcare innovators.
   </p>
   
-  <form class="flex flex-col sm:flex-row gap-4 mt-8 w-full max-w-md">
+  <form id="email-signup" class="flex flex-col sm:flex-row gap-4 mt-8 w-full max-w-md">
     <input 
       type="email" 
+      id="email-input"
       placeholder="Enter your email" 
-      class="flex-1 px-4 py-3 rounded-lg border-0 focus:ring-2 focus:ring-white focus:ring-opacity-50 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
+      class="flex-1 px-4 py-3 rounded-lg border-0 focus:ring-2 focus:ring-white focus:ring-opacity-50 bg-white text-gray-900 placeholder-gray-500"
       required
     />
     <button 
       type="submit"
-      class="bg-white text-red-600 px-6 py-3 rounded-lg font-semibold hover:bg-red-50 dark:hover:bg-gray-100 transition-colors"
+      id="submit-btn"
+      class="bg-white text-red-600 px-6 py-3 rounded-lg font-semibold hover:bg-red-50 transition-colors"
     >
       Get Notified
     </button>
   </form>
+  
+  <div id="signup-message" class="mt-4 text-sm hidden"></div>
   
   <div class="flex gap-6 mt-8 text-red-100">
     <a href="#" class="hover:text-white transition-colors flex items-center gap-2">
       <span class="text-xl">📚</span>
       Documentation
     </a>
-    <a href="#" class="hover:text-white transition-colors flex items-center gap-2">
+    <a href="https://github.com/KrithikAlluri/Lifeline" target="_blank" rel="noopener" class="hover:text-white transition-colors flex items-center gap-2">
       <span class="text-xl">💻</span>
       GitHub
     </a>
@@ -42,3 +53,114 @@ import Link from "./ui/link.astro";
     </a>
   </div>
 </div>
+
+<script define:vars={{ buttondownApiKey }}>
+  console.log('Script loaded!');
+  console.log('API Key available:', !!buttondownApiKey);
+  
+  const form = document.getElementById('email-signup');
+  const emailInput = document.getElementById('email-input');
+  const submitBtn = document.getElementById('submit-btn');
+  const messageDiv = document.getElementById('signup-message');
+  
+  console.log('Form element:', form);
+  console.log('Email input:', emailInput);
+  console.log('Submit button:', submitBtn);
+  console.log('Message div:', messageDiv);
+
+  function showMessage(message, type) {
+    console.log('Showing message:', message, type);
+    if (!messageDiv) return;
+    
+    messageDiv.textContent = message;
+    messageDiv.className = `mt-4 text-sm ${type === 'success' ? 'text-green-200' : 'text-red-200'}`;
+    messageDiv.classList.remove('hidden');
+    
+    // Hide message after 5 seconds
+    setTimeout(() => {
+      messageDiv.classList.add('hidden');
+    }, 5000);
+  }
+
+  function setLoading(loading) {
+    console.log('Setting loading:', loading);
+    if (!submitBtn) return;
+    
+    if (loading) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Subscribing...';
+      console.log('Form is now loading');
+    } else {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Get Notified';
+      console.log('Form loading finished');
+    }
+  }
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    console.log('Form submitted!');
+    
+    const email = emailInput?.value.trim();
+    console.log('Email:', email);
+    
+    if (!email) {
+      console.log('No email provided');
+      showMessage('Please enter a valid email address.', 'error');
+      return;
+    }
+
+    console.log('Setting loading state...');
+    setLoading(true);
+
+    try {
+      // Use the API key passed from server-side
+      console.log('Making API request with key:', buttondownApiKey ? 'Key available' : 'No key');
+      
+      // Use the format required by Buttondown's API
+      const requestBody = {
+        email_address: email,
+        tags: ['lifeline', 'blood-testing', 'newsletter'],
+        notes: 'Signup from Lifeline website'
+      };
+      
+      console.log('Request body:', requestBody);
+      console.log('API Key length:', buttondownApiKey?.length);
+      console.log('API Key starts with:', buttondownApiKey?.substring(0, 8));
+      
+      const response = await fetch('https://api.buttondown.email/v1/subscribers', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Token ${buttondownApiKey}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestBody)
+      });
+      
+      console.log('Response status:', response.status);
+      console.log('Response headers:', Object.fromEntries(response.headers.entries()));
+
+      if (response.ok) {
+        showMessage('Successfully subscribed! Check your email for confirmation.', 'success');
+        emailInput.value = '';
+      } else {
+        const errorData = await response.json();
+        console.log('Error response:', errorData);
+        
+        if (response.status === 400 && errorData.error?.includes('already subscribed')) {
+          showMessage('You\'re already subscribed!', 'success');
+        } else if (response.status === 422) {
+          console.log('422 error details:', errorData);
+          showMessage(`Error: ${errorData.error || 'Invalid request format'}`, 'error');
+        } else {
+          showMessage('Something went wrong. Please try again.', 'error');
+        }
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      showMessage('Something went wrong. Please try again.', 'error');
+    } finally {
+      setLoading(false);
+    }
+  });
+</script>

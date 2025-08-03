@@ -9,47 +9,43 @@ import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
     <Astronav>
       <div class="flex w-full lg:w-auto items-center justify-between">
         <a href="/" class="flex items-center gap-2">
-          <span class="text-lg font-bold text-slate-800 dark:text-white">
-            <span class="text-red-600 dark:text-red-400">Life</span>line
+          <span class="text-lg font-bold text-slate-800">
+            <span class="text-red-600">Life</span>line
           </span>
         </a>
         <div class="block lg:hidden">
-          <MenuIcon class="w-4 h-4 text-gray-800 dark:text-gray-200" />
+          <MenuIcon class="w-4 h-4 text-gray-800" />
         </div>
       </div>
       <MenuItems class="hidden w-full lg:w-auto mt-2 lg:flex lg:mt-0">
         <ul class="flex flex-col lg:flex-row lg:gap-3">
           <li>
-            <a href="#how-it-works" class="flex lg:px-3 py-2 items-center text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">
+            <a href="#how-it-works" class="flex lg:px-3 py-2 items-center text-gray-600 hover:text-gray-900">
               <span>How It Works</span>
             </a>
           </li>
           <li>
-            <a href="#technology" class="flex lg:px-3 py-2 items-center text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">
+            <a href="#technology" class="flex lg:px-3 py-2 items-center text-gray-600 hover:text-gray-900">
               <span>Technology</span>
             </a>
           </li>
           <li>
-            <a href="#impact" class="flex lg:px-3 py-2 items-center text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">
+            <a href="#impact" class="flex lg:px-3 py-2 items-center text-gray-600 hover:text-gray-900">
               <span>Impact</span>
             </a>
           </li>
           <li>
-            <a href="#" class="flex lg:px-3 py-2 items-center text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">
+            <a href="/documentation" class="flex lg:px-3 py-2 items-center text-gray-600 hover:text-gray-900">
               <span>Documentation</span>
             </a>
           </li>
           <li>
-            <a href="#" class="flex lg:px-3 py-2 items-center text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">
+            <a href="https://github.com/KrithikAlluri/Lifeline" target="_blank" rel="noopener" class="flex lg:px-3 py-2 items-center text-gray-600 hover:text-gray-900">
               <span>GitHub</span>
             </a>
           </li>
         </ul>
         <div class="lg:hidden flex items-center mt-3 gap-4">
-          <button id="dark-mode-toggle" class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
-            <span class="dark:hidden">🌙</span>
-            <span class="hidden dark:inline">☀️</span>
-          </button>
           <Link href="#join-mission" style="muted" block size="md">Get Notified</Link>
           <Link href="#join-mission" size="md" block>Join Mission</Link>
         </div>
@@ -57,11 +53,7 @@ import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
     </Astronav>
     <div>
       <div class="hidden lg:flex items-center gap-4">
-        <button id="dark-mode-toggle-desktop" class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
-          <span class="dark:hidden">🌙</span>
-          <span class="hidden dark:inline">☀️</span>
-        </button>
-        <a href="#join-mission" class="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">Get Notified</a>
+        <a href="#join-mission" class="text-gray-600 hover:text-gray-900">Get Notified</a>
         <Link href="#join-mission" size="md">Join Mission</Link>
       </div>
     </div>

@@ -54,15 +54,8 @@ const makeTitle = title
         },
       }}
     />
-    <script is:inline>
-      // Initialize dark mode on page load
-      (function() {
-        const theme = localStorage.getItem('theme') || 'light';
-        document.documentElement.classList.toggle('dark', theme === 'dark');
-      })();
-    </script>
   </head>
-  <body class="bg-white dark:bg-gray-900">
+  <body class="bg-white">
     <Navbar />
     <slot />
     <Footer />
@@ -73,33 +66,5 @@ const makeTitle = title
         content-visibility: auto;
       }
     </style>
-    <script is:inline>
-      // Dark mode toggle functionality
-      function setupDarkModeToggle() {
-        const toggleButtons = document.querySelectorAll('#dark-mode-toggle, #dark-mode-toggle-desktop');
-        
-        toggleButtons.forEach(button => {
-          button.addEventListener('click', function() {
-            const html = document.documentElement;
-            const isDark = html.classList.contains('dark');
-            
-            // Toggle the dark class
-            html.classList.toggle('dark', !isDark);
-            
-            // Save to localStorage
-            localStorage.setItem('theme', !isDark ? 'dark' : 'light');
-            
-            console.log('Theme switched to:', !isDark ? 'dark' : 'light');
-          });
-        });
-      }
-      
-      // Setup when DOM is ready
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', setupDarkModeToggle);
-      } else {
-        setupDarkModeToggle();
-      }
-    </script>
   </body>
 </html>

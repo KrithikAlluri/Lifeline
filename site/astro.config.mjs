@@ -8,13 +8,8 @@ import icon from "astro-icon";
 export default defineConfig({
   site: "https://lifeline.dev",
   integrations: [mdx(), sitemap(), icon()],
+  output: 'server',
   vite: {
-    plugins: [
-      tailwindcss({
-        config: {
-          darkMode: 'class'
-        }
-      })
-    ],
+    plugins: [tailwindcss()],
   },
 });
