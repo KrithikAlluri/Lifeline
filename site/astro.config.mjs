@@ -8,15 +8,8 @@ import icon from "astro-icon";
 export default defineConfig({
   site: "https://lifeline.dev",
   integrations: [mdx(), sitemap(), icon()],
-  output: 'server',
+  output: 'static',
   vite: {
     plugins: [tailwindcss()],
   },
-  server: {
-    port: 4321,
-  },
-  // Serve docsify documentation
-  public: {
-    docs: "./docs"
-  }
 });

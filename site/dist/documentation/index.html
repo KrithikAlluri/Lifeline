@@ -1,0 +1,230 @@
+<!DOCTYPE html><html lang="en" class="scroll-smooth"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v5.12.8"><!-- <link rel="preload" as="image" href={src} alt="Hero" /> --><title>Documentation | Lifeline</title><link rel="canonical" href="https://lifeline.dev/documentation/"><meta name="description" content="Lifeline is a low-cost, home-fabricated blood analyzer for essential biomarkers, built for students, clinics, and communities."><meta name="robots" content="index, follow"><meta property="og:title" content="Lifeline - Blood Testing, Anywhere. Under $50."><meta property="og:type" content="website"><meta property="og:image" content="https://lifeline.dev/opengraph.jpg"><meta property="og:url" content="https://lifeline.dev/documentation/"><meta property="og:image:url" content="https://lifeline.dev/opengraph.jpg"><meta property="og:image:alt" content="Lifeline Blood Testing Device"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@lifeline"><meta name="twitter:creator" content="@lifeline"><link rel="stylesheet" href="/_astro/about.C2FRMg_D.css"></head> <body class="bg-white"> <div class="max-w-(--breakpoint-xl) mx-auto px-5">  <header class="flex flex-col lg:flex-row justify-between items-center my-5">  <div class="flex w-full lg:w-auto items-center justify-between"> <a href="/" class="flex items-center gap-2"> <span class="text-lg font-bold text-slate-800"> <span class="text-red-600">Life</span>line
+</span> </a> <div class="block lg:hidden"> <button id="astronav-menu" aria-label="Toggle Menu">  <svg fill="currentColor" class="w-4 h-4 text-gray-800" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"> <title>Toggle Menu</title> <path class="astronav-close-icon astronav-toggle hidden" fill-rule="evenodd" clip-rule="evenodd" d="M18.278 16.864a1 1 0 01-1.414 1.414l-4.829-4.828-4.828 4.828a1 1 0 01-1.414-1.414l4.828-4.829-4.828-4.828a1 1 0 011.414-1.414l4.829 4.828 4.828-4.828a1 1 0 111.414 1.414l-4.828 4.829 4.828 4.828z"></path> <path class="astronav-open-icon astronav-toggle" fill-rule="evenodd" d="M4 5h16a1 1 0 010 2H4a1 1 0 110-2zm0 6h16a1 1 0 010 2H4a1 1 0 010-2zm0 6h16a1 1 0 010 2H4a1 1 0 010-2z"></path> </svg>  </button> </div> </div> <nav class="astronav-items astronav-toggle hidden w-full lg:w-auto mt-2 lg:flex lg:mt-0">  <ul class="flex flex-col lg:flex-row lg:gap-3"> <li> <a href="#how-it-works" class="flex lg:px-3 py-2 items-center text-gray-600 hover:text-gray-900"> <span>How It Works</span> </a> </li> <li> <a href="#technology" class="flex lg:px-3 py-2 items-center text-gray-600 hover:text-gray-900"> <span>Technology</span> </a> </li> <li> <a href="#impact" class="flex lg:px-3 py-2 items-center text-gray-600 hover:text-gray-900"> <span>Impact</span> </a> </li> <li> <a href="/documentation" class="flex lg:px-3 py-2 items-center text-gray-600 hover:text-gray-900"> <span>Documentation</span> </a> </li> <li> <a href="https://github.com/KrithikAlluri/Lifeline" target="_blank" rel="noopener" class="flex lg:px-3 py-2 items-center text-gray-600 hover:text-gray-900"> <span>GitHub</span> </a> </li> </ul> <div class="lg:hidden flex items-center mt-3 gap-4"> <a href="#join-mission" class="rounded-sm text-center transition focus-visible:ring-2 ring-offset-2 ring-gray-200 w-full px-4 py-2 bg-gray-100 hover:bg-gray-200   border-2 border-transparent">Get Notified </a> <a href="#join-mission" class="rounded-sm text-center transition focus-visible:ring-2 ring-offset-2 ring-gray-200 w-full px-4 py-2 bg-black text-white hover:bg-gray-800  border-2 border-transparent">Join Mission </a> </div>  </nav>  <script>(function(){const closeOnClick = false;
+
+["DOMContentLoaded", "astro:after-swap"].forEach((event) => {
+  document.addEventListener(event, addListeners);
+});
+
+// Function to clone and replace elements
+function cloneAndReplace(element) {
+  const clone = element.cloneNode(true);
+  element.parentNode.replaceChild(clone, element);
+}
+
+function addListeners() {
+  // Clean up existing listeners
+  const oldMenuButton = document.getElementById("astronav-menu");
+  if (oldMenuButton) {
+    cloneAndReplace(oldMenuButton);
+  }
+
+  const oldDropdownMenus = document.querySelectorAll(".astronav-dropdown");
+  oldDropdownMenus.forEach((menu) => {
+    cloneAndReplace(menu);
+  });
+
+  // Mobile nav toggle
+  const menuButton = document.getElementById("astronav-menu");
+  menuButton && menuButton.addEventListener("click", toggleMobileNav);
+
+  // Dropdown menus
+  const dropdownMenus = document.querySelectorAll(".astronav-dropdown");
+  dropdownMenus.forEach((menu) => {
+    const button = menu.querySelector("button");
+    button &&
+      button.addEventListener("click", (event) =>
+        toggleDropdownMenu(event, menu, dropdownMenus)
+      );
+
+    // Handle Submenu Dropdowns
+    const dropDownSubmenus = menu.querySelectorAll(
+      ".astronav-dropdown-submenu"
+    );
+
+    dropDownSubmenus.forEach((submenu) => {
+      const submenuButton = submenu.querySelector("button");
+      submenuButton &&
+        submenuButton.addEventListener("click", (event) => {
+          event.stopImmediatePropagation();
+          toggleSubmenuDropdown(event, submenu);
+        });
+    });
+  });
+
+  // Clicking away from dropdown will remove the dropdown class
+  document.addEventListener("click", closeAllDropdowns);
+
+  if (closeOnClick) {
+    handleCloseOnClick();
+  }
+}
+
+function toggleMobileNav() {
+  [...document.querySelectorAll(".astronav-toggle")].forEach((el) => {
+    el.classList.toggle("hidden");
+  });
+}
+
+function toggleDropdownMenu(event, menu, dropdownMenus) {
+  toggleMenu(menu);
+
+  // Close one dropdown when selecting another
+  Array.from(dropdownMenus)
+    .filter((el) => el !== menu && !menu.contains(el))
+    .forEach(closeMenu);
+
+  event.stopPropagation();
+}
+
+function toggleSubmenuDropdown(event, submenu) {
+  event.stopPropagation();
+  toggleMenu(submenu);
+
+  // Close sibling submenus at the same nesting level
+  const siblingSubmenus = submenu
+    .closest(".astronav-dropdown")
+    .querySelectorAll(".astronav-dropdown-submenu");
+  Array.from(siblingSubmenus)
+    .filter((el) => el !== submenu && !submenu.contains(el))
+    .forEach(closeMenu);
+}
+
+function closeAllDropdowns(event) {
+  const dropdownMenus = document.querySelectorAll(".dropdown-toggle");
+  const dropdownParent = document.querySelectorAll(
+    ".astronav-dropdown, .astronav-dropdown-submenu"
+  );
+  const isButtonInsideDropdown = [
+    ...document.querySelectorAll(
+      `.astronav-dropdown button, .astronav-dropdown label, .astronav-dropdown input,
+	  .astronav-dropdown-submenu button, .astronav-dropdown-submenu label, .astronav-dropdown-submenu input,
+	  #astronav-menu`
+    ),
+  ].some((button) => button.contains(event.target));
+  if (!isButtonInsideDropdown) {
+    dropdownMenus.forEach((d) => {
+      // console.log("I ran", d);
+      // if (!d.contains(event.target)) {
+      d.classList.remove("open");
+      d.removeAttribute("open");
+      d.classList.add("hidden");
+      // }
+    });
+    dropdownParent.forEach((d) => {
+      d.classList.remove("open");
+      d.removeAttribute("open");
+      d.setAttribute("aria-expanded", "false");
+    });
+  }
+}
+
+function toggleMenu(menu) {
+  menu.classList.toggle("open");
+  const expanded = menu.getAttribute("aria-expanded") === "true";
+  menu.setAttribute("aria-expanded", expanded ? "false" : "true");
+  menu.hasAttribute("open")
+    ? menu.removeAttribute("open")
+    : menu.setAttribute("open", "");
+
+  const dropdownToggle = menu.querySelector(".dropdown-toggle");
+  const dropdownExpanded = dropdownToggle.getAttribute("aria-expanded");
+  dropdownToggle.classList.toggle("hidden");
+  dropdownToggle.setAttribute(
+    "aria-expanded",
+    dropdownExpanded === "true" ? "false" : "true"
+  );
+}
+
+function closeMenu(menu) {
+  // console.log("closing", menu);
+  menu.classList.remove("open");
+  menu.removeAttribute("open");
+  menu.setAttribute("aria-expanded", "false");
+  const dropdownToggles = menu.querySelectorAll(".dropdown-toggle");
+  dropdownToggles.forEach((toggle) => {
+    toggle.classList.add("hidden");
+    toggle.setAttribute("aria-expanded", "false");
+  });
+}
+
+function handleCloseOnClick() {
+  const navMenuItems = document.querySelector(".astronav-items");
+  const navToggle = document.getElementById("astronav-menu");
+  const navLink = navMenuItems && navMenuItems.querySelectorAll("a");
+
+  const MenuIcons = navToggle.querySelectorAll(".astronav-toggle");
+
+  navLink &&
+    navLink.forEach((item) => {
+      item.addEventListener("click", () => {
+        navMenuItems?.classList.add("hidden");
+        MenuIcons.forEach((el) => {
+          el.classList.toggle("hidden");
+        });
+      });
+    });
+}
+})();</script> <div> <div class="hidden lg:flex items-center gap-4"> <a href="#join-mission" class="text-gray-600 hover:text-gray-900">Get Notified</a> <a href="#join-mission" class="rounded-sm text-center transition focus-visible:ring-2 ring-offset-2 ring-gray-200 px-4 py-2 bg-black text-white hover:bg-gray-800  border-2 border-transparent">Join Mission </a> </div> </div> </header>  </div>  <div class="max-w-(--breakpoint-xl) mx-auto px-5">  <div class="max-w-4xl mx-auto py-16"> <div class="text-center mb-16"> <h1 class="text-5xl lg:text-6xl font-bold lg:tracking-tight text-gray-900">
+Lifeline <span class="text-red-600">Documentation</span> </h1> <p class="text-lg mt-4 text-slate-600 max-w-3xl mx-auto">
+Complete technical documentation for building and using your own Lifeline blood analyzer.
+</p> </div> <div class="bg-red-50 rounded-2xl p-8 mb-16"> <h2 class="text-3xl font-bold mb-6 text-gray-900">Interactive Documentation</h2> <p class="text-slate-600 mb-8 max-w-2xl">
+Access our comprehensive documentation with search, navigation, and interactive features.
+</p> <div class="text-center"> <a href="/docs" class="bg-red-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-red-700 transition-colors inline-block">
+Open Documentation Portal
+</a> </div> </div> <div class="grid md:grid-cols-2 gap-8 mb-16"> <div class="bg-white rounded-lg p-8 shadow-sm border border-gray-100"> <h2 class="text-2xl font-bold mb-4 text-gray-900">Assembly Guide</h2> <p class="text-slate-600 mb-6">
+Step-by-step instructions for building your Lifeline reader from components.
+</p> <div class="space-y-3"> <div class="flex items-center gap-3"> <span class="text-red-600 font-bold">•</span> <span class="text-slate-600">Component list and sourcing</span> </div> <div class="flex items-center gap-3"> <span class="text-red-600 font-bold">•</span> <span class="text-slate-600">PCB assembly instructions</span> </div> <div class="flex items-center gap-3"> <span class="text-red-600 font-bold">•</span> <span class="text-slate-600">Calibration and testing</span> </div> </div> <a href="/docs/#/assembly" class="inline-block mt-6 text-red-600 font-semibold hover:text-red-700">
+View Assembly Guide →
+</a> </div> <div class="bg-white rounded-lg p-8 shadow-sm border border-gray-100"> <h2 class="text-2xl font-bold mb-4 text-gray-900">Technical Specifications</h2> <p class="text-slate-600 mb-6">
+Detailed technical specifications and design files.
+</p> <div class="space-y-3"> <div class="flex items-center gap-3"> <span class="text-red-600 font-bold">•</span> <span class="text-slate-600">PCB schematics and layouts</span> </div> <div class="flex items-center gap-3"> <span class="text-red-600 font-bold">•</span> <span class="text-slate-600">Firmware and software</span> </div> <div class="flex items-center gap-3"> <span class="text-red-600 font-bold">•</span> <span class="text-slate-600">Performance specifications</span> </div> </div> <a href="/docs/#/technical-specs" class="inline-block mt-6 text-red-600 font-semibold hover:text-red-700">
+View Specifications →
+</a> </div> </div> <div class="bg-white rounded-lg p-8 shadow-sm border border-gray-100 mb-16"> <h2 class="text-3xl font-bold mb-6 text-gray-900">Documentation Sections</h2> <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"> <div> <h3 class="text-xl font-semibold mb-3 text-gray-900">Getting Started</h3> <p class="text-slate-600 mb-4">
+First-time setup and calibration procedures.
+</p> <a href="/docs/#/getting-started" class="text-red-600 font-semibold hover:text-red-700">
+Read Guide →
+</a> </div> <div> <h3 class="text-xl font-semibold mb-3 text-gray-900">User Manual</h3> <p class="text-slate-600 mb-4">
+Operating procedures and maintenance guides.
+</p> <a href="/docs/#/user-manual" class="text-red-600 font-semibold hover:text-red-700">
+Read Manual →
+</a> </div> <div> <h3 class="text-xl font-semibold mb-3 text-gray-900">μPAD Fabrication</h3> <p class="text-slate-600 mb-4">
+Step-by-step μPAD fabrication protocol.
+</p> <a href="/docs/#/micropad-fabrication" class="text-red-600 font-semibold hover:text-red-700">
+View Protocol →
+</a> </div> <div> <h3 class="text-xl font-semibold mb-3 text-gray-900">Electrochemical Assays</h3> <p class="text-slate-600 mb-4">
+EC sensor setup and operation instructions.
+</p> <a href="/docs/#/electrochemical-assays" class="text-red-600 font-semibold hover:text-red-700">
+Read Guide →
+</a> </div> <div> <h3 class="text-xl font-semibold mb-3 text-gray-900">Software Setup</h3> <p class="text-slate-600 mb-4">
+Firmware and mobile app installation.
+</p> <a href="/docs/#/software-setup" class="text-red-600 font-semibold hover:text-red-700">
+Setup Guide →
+</a> </div> <div> <h3 class="text-xl font-semibold mb-3 text-gray-900">Troubleshooting</h3> <p class="text-slate-600 mb-4">
+Common issues and solutions.
+</p> <a href="/docs/#/troubleshooting" class="text-red-600 font-semibold hover:text-red-700">
+View Solutions →
+</a> </div> </div> </div> <div class="bg-red-50 rounded-2xl p-8 mb-16"> <h2 class="text-3xl font-bold mb-6 text-gray-900">Open Source Resources</h2> <div class="grid md:grid-cols-3 gap-6"> <div> <h3 class="text-xl font-semibold mb-3 text-gray-900">GitHub Repository</h3> <p class="text-slate-600 mb-4">
+Complete source code, schematics, and documentation.
+</p> <a href="https://github.com/KrithikAlluri/Lifeline" target="_blank" rel="noopener" class="text-red-600 font-semibold hover:text-red-700">
+View on GitHub →
+</a> </div> <div> <h3 class="text-xl font-semibold mb-3 text-gray-900">Community Forum</h3> <p class="text-slate-600 mb-4">
+Connect with other builders and get help.
+</p> <a href="#" class="text-red-600 font-semibold hover:text-red-700">
+Join Community →
+</a> </div> <div> <h3 class="text-xl font-semibold mb-3 text-gray-900">Contributing</h3> <p class="text-slate-600 mb-4">
+Guidelines for contributing to the project.
+</p> <a href="/docs/#/contributing" class="text-red-600 font-semibold hover:text-red-700">
+Contribute →
+</a> </div> </div> </div> <div class="text-center"> <h2 class="text-3xl font-bold mb-6 text-gray-900">Need Help?</h2> <p class="text-slate-600 mb-8 max-w-2xl mx-auto">
+Can't find what you're looking for? Our community is here to help with any questions about building or using Lifeline.
+</p> <div class="flex flex-col sm:flex-row gap-4 justify-center"> <a href="/contact" class="bg-red-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors">
+Contact Support
+</a> <a href="https://github.com/KrithikAlluri/Lifeline/issues" target="_blank" rel="noopener" class="border border-red-600 text-red-600 px-8 py-3 rounded-lg font-semibold hover:bg-red-50 transition-colors">
+Report an Issue
+</a> </div> </div> </div>  </div>  <footer class="my-20"> <div class="max-w-4xl mx-auto"> <div class="grid md:grid-cols-3 gap-8 mb-8"> <div> <h3 class="font-bold text-lg mb-4 text-gray-900">Lifeline</h3> <p class="text-slate-600 text-sm">
+Open-source blood testing for everyone. Making professional diagnostics accessible worldwide.
+</p> </div> <div> <h3 class="font-bold text-lg mb-4 text-gray-900">Resources</h3> <ul class="text-sm text-slate-600 space-y-2"> <li><a href="#" class="hover:text-red-600">Documentation</a></li> <li><a href="#" class="hover:text-red-600">Assembly Guide</a></li> <li><a href="https://github.com/KrithikAlluri/Lifeline" target="_blank" rel="noopener" class="hover:text-red-600">GitHub Repository</a></li> <li><a href="#" class="hover:text-red-600">Community Forum</a></li> </ul> </div> <div> <h3 class="font-bold text-lg mb-4 text-gray-900">Contact</h3> <ul class="text-sm text-slate-600 space-y-2"> <li><a href="mailto:krithik.alluri@gmail.com" class="hover:text-red-600">krithik.alluri@gmail.com</a></li> <li><a href="#" class="hover:text-red-600">Report Issues</a></li> <li><a href="#" class="hover:text-red-600">Contribute</a></li> </ul> </div> </div> <div class="border-t border-gray-200 pt-8"> <div class="flex flex-col md:flex-row justify-between items-center"> <p class="text-sm text-slate-500">
+Copyright © 2025 Lifeline. Open-source project.
+</p> <p class="text-xs text-slate-500 mt-2 md:mt-0">
+Built with ❤️ for global health accessibility
+</p> </div> </div> </div> </footer>  </body> </html>

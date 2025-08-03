@@ -1,0 +1,179 @@
+<!DOCTYPE html><html lang="en" class="scroll-smooth"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v5.12.8"><!-- <link rel="preload" as="image" href={src} alt="Hero" /> --><title>About | Lifeline</title><link rel="canonical" href="https://lifeline.dev/about/"><meta name="description" content="Lifeline is a low-cost, home-fabricated blood analyzer for essential biomarkers, built for students, clinics, and communities."><meta name="robots" content="index, follow"><meta property="og:title" content="Lifeline - Blood Testing, Anywhere. Under $50."><meta property="og:type" content="website"><meta property="og:image" content="https://lifeline.dev/opengraph.jpg"><meta property="og:url" content="https://lifeline.dev/about/"><meta property="og:image:url" content="https://lifeline.dev/opengraph.jpg"><meta property="og:image:alt" content="Lifeline Blood Testing Device"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@lifeline"><meta name="twitter:creator" content="@lifeline"><link rel="stylesheet" href="/_astro/about.C2FRMg_D.css"></head> <body class="bg-white"> <div class="max-w-(--breakpoint-xl) mx-auto px-5">  <header class="flex flex-col lg:flex-row justify-between items-center my-5">  <div class="flex w-full lg:w-auto items-center justify-between"> <a href="/" class="flex items-center gap-2"> <span class="text-lg font-bold text-slate-800"> <span class="text-red-600">Life</span>line
+</span> </a> <div class="block lg:hidden"> <button id="astronav-menu" aria-label="Toggle Menu">  <svg fill="currentColor" class="w-4 h-4 text-gray-800" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"> <title>Toggle Menu</title> <path class="astronav-close-icon astronav-toggle hidden" fill-rule="evenodd" clip-rule="evenodd" d="M18.278 16.864a1 1 0 01-1.414 1.414l-4.829-4.828-4.828 4.828a1 1 0 01-1.414-1.414l4.828-4.829-4.828-4.828a1 1 0 011.414-1.414l4.829 4.828 4.828-4.828a1 1 0 111.414 1.414l-4.828 4.829 4.828 4.828z"></path> <path class="astronav-open-icon astronav-toggle" fill-rule="evenodd" d="M4 5h16a1 1 0 010 2H4a1 1 0 110-2zm0 6h16a1 1 0 010 2H4a1 1 0 010-2zm0 6h16a1 1 0 010 2H4a1 1 0 010-2z"></path> </svg>  </button> </div> </div> <nav class="astronav-items astronav-toggle hidden w-full lg:w-auto mt-2 lg:flex lg:mt-0">  <ul class="flex flex-col lg:flex-row lg:gap-3"> <li> <a href="#how-it-works" class="flex lg:px-3 py-2 items-center text-gray-600 hover:text-gray-900"> <span>How It Works</span> </a> </li> <li> <a href="#technology" class="flex lg:px-3 py-2 items-center text-gray-600 hover:text-gray-900"> <span>Technology</span> </a> </li> <li> <a href="#impact" class="flex lg:px-3 py-2 items-center text-gray-600 hover:text-gray-900"> <span>Impact</span> </a> </li> <li> <a href="/documentation" class="flex lg:px-3 py-2 items-center text-gray-600 hover:text-gray-900"> <span>Documentation</span> </a> </li> <li> <a href="https://github.com/KrithikAlluri/Lifeline" target="_blank" rel="noopener" class="flex lg:px-3 py-2 items-center text-gray-600 hover:text-gray-900"> <span>GitHub</span> </a> </li> </ul> <div class="lg:hidden flex items-center mt-3 gap-4"> <a href="#join-mission" class="rounded-sm text-center transition focus-visible:ring-2 ring-offset-2 ring-gray-200 w-full px-4 py-2 bg-gray-100 hover:bg-gray-200   border-2 border-transparent">Get Notified </a> <a href="#join-mission" class="rounded-sm text-center transition focus-visible:ring-2 ring-offset-2 ring-gray-200 w-full px-4 py-2 bg-black text-white hover:bg-gray-800  border-2 border-transparent">Join Mission </a> </div>  </nav>  <script>(function(){const closeOnClick = false;
+
+["DOMContentLoaded", "astro:after-swap"].forEach((event) => {
+  document.addEventListener(event, addListeners);
+});
+
+// Function to clone and replace elements
+function cloneAndReplace(element) {
+  const clone = element.cloneNode(true);
+  element.parentNode.replaceChild(clone, element);
+}
+
+function addListeners() {
+  // Clean up existing listeners
+  const oldMenuButton = document.getElementById("astronav-menu");
+  if (oldMenuButton) {
+    cloneAndReplace(oldMenuButton);
+  }
+
+  const oldDropdownMenus = document.querySelectorAll(".astronav-dropdown");
+  oldDropdownMenus.forEach((menu) => {
+    cloneAndReplace(menu);
+  });
+
+  // Mobile nav toggle
+  const menuButton = document.getElementById("astronav-menu");
+  menuButton && menuButton.addEventListener("click", toggleMobileNav);
+
+  // Dropdown menus
+  const dropdownMenus = document.querySelectorAll(".astronav-dropdown");
+  dropdownMenus.forEach((menu) => {
+    const button = menu.querySelector("button");
+    button &&
+      button.addEventListener("click", (event) =>
+        toggleDropdownMenu(event, menu, dropdownMenus)
+      );
+
+    // Handle Submenu Dropdowns
+    const dropDownSubmenus = menu.querySelectorAll(
+      ".astronav-dropdown-submenu"
+    );
+
+    dropDownSubmenus.forEach((submenu) => {
+      const submenuButton = submenu.querySelector("button");
+      submenuButton &&
+        submenuButton.addEventListener("click", (event) => {
+          event.stopImmediatePropagation();
+          toggleSubmenuDropdown(event, submenu);
+        });
+    });
+  });
+
+  // Clicking away from dropdown will remove the dropdown class
+  document.addEventListener("click", closeAllDropdowns);
+
+  if (closeOnClick) {
+    handleCloseOnClick();
+  }
+}
+
+function toggleMobileNav() {
+  [...document.querySelectorAll(".astronav-toggle")].forEach((el) => {
+    el.classList.toggle("hidden");
+  });
+}
+
+function toggleDropdownMenu(event, menu, dropdownMenus) {
+  toggleMenu(menu);
+
+  // Close one dropdown when selecting another
+  Array.from(dropdownMenus)
+    .filter((el) => el !== menu && !menu.contains(el))
+    .forEach(closeMenu);
+
+  event.stopPropagation();
+}
+
+function toggleSubmenuDropdown(event, submenu) {
+  event.stopPropagation();
+  toggleMenu(submenu);
+
+  // Close sibling submenus at the same nesting level
+  const siblingSubmenus = submenu
+    .closest(".astronav-dropdown")
+    .querySelectorAll(".astronav-dropdown-submenu");
+  Array.from(siblingSubmenus)
+    .filter((el) => el !== submenu && !submenu.contains(el))
+    .forEach(closeMenu);
+}
+
+function closeAllDropdowns(event) {
+  const dropdownMenus = document.querySelectorAll(".dropdown-toggle");
+  const dropdownParent = document.querySelectorAll(
+    ".astronav-dropdown, .astronav-dropdown-submenu"
+  );
+  const isButtonInsideDropdown = [
+    ...document.querySelectorAll(
+      `.astronav-dropdown button, .astronav-dropdown label, .astronav-dropdown input,
+	  .astronav-dropdown-submenu button, .astronav-dropdown-submenu label, .astronav-dropdown-submenu input,
+	  #astronav-menu`
+    ),
+  ].some((button) => button.contains(event.target));
+  if (!isButtonInsideDropdown) {
+    dropdownMenus.forEach((d) => {
+      // console.log("I ran", d);
+      // if (!d.contains(event.target)) {
+      d.classList.remove("open");
+      d.removeAttribute("open");
+      d.classList.add("hidden");
+      // }
+    });
+    dropdownParent.forEach((d) => {
+      d.classList.remove("open");
+      d.removeAttribute("open");
+      d.setAttribute("aria-expanded", "false");
+    });
+  }
+}
+
+function toggleMenu(menu) {
+  menu.classList.toggle("open");
+  const expanded = menu.getAttribute("aria-expanded") === "true";
+  menu.setAttribute("aria-expanded", expanded ? "false" : "true");
+  menu.hasAttribute("open")
+    ? menu.removeAttribute("open")
+    : menu.setAttribute("open", "");
+
+  const dropdownToggle = menu.querySelector(".dropdown-toggle");
+  const dropdownExpanded = dropdownToggle.getAttribute("aria-expanded");
+  dropdownToggle.classList.toggle("hidden");
+  dropdownToggle.setAttribute(
+    "aria-expanded",
+    dropdownExpanded === "true" ? "false" : "true"
+  );
+}
+
+function closeMenu(menu) {
+  // console.log("closing", menu);
+  menu.classList.remove("open");
+  menu.removeAttribute("open");
+  menu.setAttribute("aria-expanded", "false");
+  const dropdownToggles = menu.querySelectorAll(".dropdown-toggle");
+  dropdownToggles.forEach((toggle) => {
+    toggle.classList.add("hidden");
+    toggle.setAttribute("aria-expanded", "false");
+  });
+}
+
+function handleCloseOnClick() {
+  const navMenuItems = document.querySelector(".astronav-items");
+  const navToggle = document.getElementById("astronav-menu");
+  const navLink = navMenuItems && navMenuItems.querySelectorAll("a");
+
+  const MenuIcons = navToggle.querySelectorAll(".astronav-toggle");
+
+  navLink &&
+    navLink.forEach((item) => {
+      item.addEventListener("click", () => {
+        navMenuItems?.classList.add("hidden");
+        MenuIcons.forEach((el) => {
+          el.classList.toggle("hidden");
+        });
+      });
+    });
+}
+})();</script> <div> <div class="hidden lg:flex items-center gap-4"> <a href="#join-mission" class="text-gray-600 hover:text-gray-900">Get Notified</a> <a href="#join-mission" class="rounded-sm text-center transition focus-visible:ring-2 ring-offset-2 ring-gray-200 px-4 py-2 bg-black text-white hover:bg-gray-800  border-2 border-transparent">Join Mission </a> </div> </div> </header>  </div>  <div class="max-w-(--breakpoint-xl) mx-auto px-5">  <div class="mt-16 text-center"> <h1 class="text-4xl lg:text-5xl font-bold lg:tracking-tight"> About </h1> <p class="text-lg mt-4 text-slate-600"> We are a small passionate team. </p> </div> <div class="flex flex-col gap-3 mx-auto max-w-4xl mt-16"> <h2 class="font-bold text-3xl text-gray-800">
+Empowering the world with Astro.
+</h2> <p class="text-lg leading-relaxed text-slate-500">
+We're a multi-cultural team from around the world! We come from diverse
+        backgrounds, bringing different personalities, experiences and skills to
+        the job. This is what makes our team so special.
+</p> </div> <div class="grid md:grid-cols-3 gap-10 mx-auto max-w-4xl mt-12"> <div class="group"> <div class="w-full aspect-square"> <picture> <source srcset="https://images.unsplash.com/photo-1580489944761-15a19d654956?&fit=crop&w=280" type="image/webp" sizes="(max-width: 800px) 100vw, 400px">  <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?&fit=crop&w=280" alt="Janette Lynch" sizes="(max-width: 800px) 100vw, 400px" loading="lazy" decoding="async" fetchpriority="auto" width="400" height="400" class="w-full rounded-sm transition group-hover:-translate-y-1 group-hover:shadow-xl bg-white object-cover object-center aspect-square"> </picture> </div> <div class="mt-4 text-center"> <h2 class="text-lg text-gray-800">Janette Lynch</h2> <h3 class="text-sm text-slate-500"> Senior Director </h3> </div> </div><div class="group"> <div class="w-full aspect-square"> <picture> <source srcset="https://images.unsplash.com/photo-1633332755192-727a05c4013d?&fit=crop&w=280" type="image/webp" sizes="(max-width: 800px) 100vw, 400px">  <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?&fit=crop&w=280" alt="Marcell Ziemann" sizes="(max-width: 800px) 100vw, 400px" loading="lazy" decoding="async" fetchpriority="auto" width="400" height="400" class="w-full rounded-sm transition group-hover:-translate-y-1 group-hover:shadow-xl bg-white object-cover object-center aspect-square"> </picture> </div> <div class="mt-4 text-center"> <h2 class="text-lg text-gray-800">Marcell Ziemann</h2> <h3 class="text-sm text-slate-500"> Principal Strategist </h3> </div> </div><div class="group"> <div class="w-full aspect-square"> <picture> <source srcset="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?&fit=crop&w=280" type="image/webp" sizes="(max-width: 800px) 100vw, 400px">  <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?&fit=crop&w=280" alt="Robert Palmer" sizes="(max-width: 800px) 100vw, 400px" loading="lazy" decoding="async" fetchpriority="auto" width="400" height="400" class="w-full rounded-sm transition group-hover:-translate-y-1 group-hover:shadow-xl bg-white object-cover object-center aspect-square"> </picture> </div> <div class="mt-4 text-center"> <h2 class="text-lg text-gray-800">Robert Palmer</h2> <h3 class="text-sm text-slate-500"> Marketing Engineer </h3> </div> </div> </div>  </div>  <footer class="my-20"> <div class="max-w-4xl mx-auto"> <div class="grid md:grid-cols-3 gap-8 mb-8"> <div> <h3 class="font-bold text-lg mb-4 text-gray-900">Lifeline</h3> <p class="text-slate-600 text-sm">
+Open-source blood testing for everyone. Making professional diagnostics accessible worldwide.
+</p> </div> <div> <h3 class="font-bold text-lg mb-4 text-gray-900">Resources</h3> <ul class="text-sm text-slate-600 space-y-2"> <li><a href="#" class="hover:text-red-600">Documentation</a></li> <li><a href="#" class="hover:text-red-600">Assembly Guide</a></li> <li><a href="https://github.com/KrithikAlluri/Lifeline" target="_blank" rel="noopener" class="hover:text-red-600">GitHub Repository</a></li> <li><a href="#" class="hover:text-red-600">Community Forum</a></li> </ul> </div> <div> <h3 class="font-bold text-lg mb-4 text-gray-900">Contact</h3> <ul class="text-sm text-slate-600 space-y-2"> <li><a href="mailto:krithik.alluri@gmail.com" class="hover:text-red-600">krithik.alluri@gmail.com</a></li> <li><a href="#" class="hover:text-red-600">Report Issues</a></li> <li><a href="#" class="hover:text-red-600">Contribute</a></li> </ul> </div> </div> <div class="border-t border-gray-200 pt-8"> <div class="flex flex-col md:flex-row justify-between items-center"> <p class="text-sm text-slate-500">
+Copyright © 2025 Lifeline. Open-source project.
+</p> <p class="text-xs text-slate-500 mt-2 md:mt-0">
+Built with ❤️ for global health accessibility
+</p> </div> </div> </div> </footer>  </body> </html>
