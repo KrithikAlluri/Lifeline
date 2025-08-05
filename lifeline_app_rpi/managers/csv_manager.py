@@ -14,7 +14,7 @@ class CsvManager:
         if not os.path.exists(USERS_CSV):
             pd.DataFrame(columns=['username','password_hash','email']).to_csv(USERS_CSV, index=False)
         if not os.path.exists(TESTS_CSV):
-            pd.DataFrame(columns=['test_id','username','timestamp','glucose','value','status','iron','value','status','b12','value','status']).to_csv(TESTS_CSV, index=False)
+            pd.DataFrame(columns=['test_id','username','timestamp']).to_csv(TESTS_CSV, index=False)
 
     @staticmethod
     def read_users():

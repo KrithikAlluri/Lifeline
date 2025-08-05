@@ -7,8 +7,13 @@ import os
 
 REFERENCE_RANGES = {
     'glucose': (70, 110),
-    'iron': (60, 170),
-    'b12': (200, 900),
+    'creatinine': (0.6, 1.2),
+    'urea': (7, 20),
+    'potassium': (3.5, 5.0),
+    'albumin': (3.4, 5.4),
+    'hemoglobin': (12, 16),
+    'uric_acid': (3.4, 7.0),
+    'vitamin_b12': (200, 900),
 }
 
 class ResultsPage(QWidget):

@@ -1,3 +1,2 @@
 username,password_hash,email,age,sex,weight,height,smoking,alcohol,exercise,diet,conditions,medications
-krithik,1d43c557df34618bf2694961942ee4465cc6c49c0d5581b05b7dc3216269ece8,krithik@email.com,,,,,,,,,,
-janesmith,36bbf8a9c778adf9deaddf968bbf5c7f12a0e7b26aa11ac0a6e1,janesmith@gmail.com,,,,,,,,,,
+Krithik,768a28765da70a9f4ed16b0e231ad9746e20ba6e308d13ae91ce74d0e0bded69,ktemp.alluri@gmail.com,19,Male,62.5,177,No,Occasional,Some,Omnivore,None,None

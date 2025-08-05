@@ -4,18 +4,27 @@ from managers.csv_manager import CsvManager
 import datetime
 import random
 
+# Reference ranges for biomarker interpretation
+REFERENCE_RANGES = {
+    'glucose': (70, 110),
+    'creatinine': (0.6, 1.2),
+    'urea': (7, 20),
+    'potassium': (3.5, 5.0),
+    'albumin': (3.4, 5.4),
+    'hemoglobin': (12, 16),
+    'uric_acid': (3.4, 7.0),
+    'vitamin_b12': (200, 900),
+}
+
 BIOMARKERS = [
     ("glucose", "mg/dL"),
-    ("iron", "ug/dL"),
-    ("b12", "pg/mL"),
-    ("cholesterol", "mg/dL"),
-    ("triglycerides", "mg/dL"),
-    ("calcium", "mg/dL"),
-    ("vitamin D", "ng/mL"),
+    ("creatinine", "mg/dL"),
+    ("urea", "mg/dL"),
     ("potassium", "mmol/L"),
-    ("sodium", "mmol/L"),
-    ("magnesium", "mg/dL"),
-    ("zinc", "ug/dL"),
+    ("albumin", "g/dL"),
+    ("hemoglobin", "g/dL"),
+    ("uric_acid", "mg/dL"),
+    ("vitamin_b12", "pg/mL"),
 ]
 
 class NewTestWizardPage(QWidget):
@@ -93,9 +102,39 @@ class NewTestWizardPage(QWidget):
         }
         for biomarker, unit in BIOMARKERS:
             if biomarker in self._biomarkers:
-                value = random.randint(80, 120)
-                status = 'normal'
-                row[f'{biomarker}'] = value
+                # Generate realistic values for each biomarker
+                if biomarker == 'glucose':
+                    value = random.uniform(70, 110)
+                elif biomarker == 'creatinine':
+                    value = random.uniform(0.6, 1.2)
+                elif biomarker == 'urea':
+                    value = random.uniform(7, 20)
+                elif biomarker == 'potassium':
+                    value = random.uniform(3.5, 5.0)
+                elif biomarker == 'albumin':
+                    value = random.uniform(3.4, 5.4)
+                elif biomarker == 'hemoglobin':
+                    value = random.uniform(12, 16)
+                elif biomarker == 'uric_acid':
+                    value = random.uniform(3.4, 7.0)
+                elif biomarker == 'vitamin_b12':
+                    value = random.uniform(200, 900)
+                else:
+                    value = random.uniform(80, 120)
+                
+                # Determine status based on reference ranges
+                if biomarker in REFERENCE_RANGES:
+                    min_val, max_val = REFERENCE_RANGES[biomarker]
+                    if value < min_val:
+                        status = 'low'
+                    elif value > max_val:
+                        status = 'high'
+                    else:
+                        status = 'normal'
+                else:
+                    status = 'normal'
+                
+                row[f'{biomarker}'] = round(value, 2)
                 row[f'{biomarker}_unit'] = unit
                 row[f'{biomarker}_status'] = status
         CsvManager.add_test(row)

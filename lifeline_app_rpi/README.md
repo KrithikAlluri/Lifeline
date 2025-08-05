@@ -6,10 +6,18 @@ A modular, touchscreen-friendly PyQt5 app for the Lifeline $50 blood testing kit
 - Multi-user login with password hashing
 - Create users with optional email
 - Per-user dashboard and test history
-- New test wizard (mock data)
+- New test wizard for 8 critical biomarkers:
+  - Glucose (metabolic indicator)
+  - Creatinine (kidney function)
+  - Urea/BUN (kidney function)
+  - Potassium (electrolyte balance)
+  - Albumin (protein levels)
+  - Hemoglobin (oxygen transport)
+  - Uric Acid (metabolic waste)
+  - Vitamin B12 (nutritional status)
 - Results with export/email
 - Touchscreen-optimized UI
-- Chatbot panel
+- Medical AI chatbot
 - All data in CSV (no SQL)
 
 ## Directory Structure

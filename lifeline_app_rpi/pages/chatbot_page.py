@@ -2,12 +2,14 @@ import requests
 import json
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QTextEdit, QPushButton, QHBoxLayout
 from PyQt5.QtCore import Qt
-from lifeline_app_rpi.managers.csv_manager import CsvManager
+from managers.csv_manager import CsvManager
 
-OPENROUTER_API_KEY = "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"
+# Load API key from environment variable for production security
+import os
+OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "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")
 OPENROUTER_MODEL = "google/gemma-3n-e2b-it:free"
-REFERER = "<YOUR_SITE_URL>"
-TITLE = "<YOUR_SITE_NAME>"
+REFERER = "https://lifeline-blood-testing.com"
+TITLE = "Lifeline Blood Testing Kit"
 
 USER_AVATAR = "🧑"
 BOT_AVATAR = "🩸"  # or use "🤖" for a robot look
