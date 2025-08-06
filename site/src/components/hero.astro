@@ -1,27 +1,24 @@
 ---
 import Link from "@/components/ui/link.astro";
+import heroImage from "@/assets/hero.png";
 ---
 
 <main
   class="grid lg:grid-cols-2 place-items-center pt-16 pb-8 md:pt-12 md:pb-24">
   <div class="py-6 md:order-1 hidden md:block">
     <div class="relative">
-      <div class="w-80 h-80 bg-gradient-to-br from-red-500 to-red-700 rounded-2xl shadow-2xl flex items-center justify-center">
-        <div class="text-white text-center">
-          <div class="w-16 h-16 mx-auto mb-4 text-6xl">💧</div>
-          <p class="text-lg font-semibold">Lifeline Reader</p>
-          <p class="text-sm opacity-80">Portable Blood Analyzer</p>
-        </div>
+      <div class="w-140 h-140 rounded-2xl  overflow-hidden">
+        <img src={heroImage.src} alt="Lifeline Reader - Portable Blood Analyzer" class="w-full h-full object-cover" />
       </div>
-      <div class="absolute -top-4 -right-4 w-24 h-24 bg-white rounded-full shadow-lg flex items-center justify-center">
+      <!-- <div class="absolute -top-4 -right-4 w-24 h-24 bg-white rounded-full shadow-lg flex items-center justify-center">
         <div class="w-8 h-8 text-red-500 text-2xl">🧪</div>
-      </div>
+      </div> -->
     </div>
   </div>
   <div>
     <h1
       class="text-5xl lg:text-6xl xl:text-7xl font-bold lg:tracking-tight xl:tracking-tighter text-gray-900">
-      Blood Testing, <span class="text-red-600">Anywhere.</span> Under $50.
+      Edge-Powered Blood Testing with <span class="text-red-600">AI Intelligence.</span> Under $110.
     </h1>
     <p class="text-lg mt-4 text-slate-600 max-w-xl">
       Lifeline is a low-cost, home-fabricated blood analyzer for essential biomarkers, built for students, clinics, and communities.

@@ -1,18 +1,18 @@
 # Lifeline Documentation
 
-> **Blood Testing, Anywhere. Under $50.**
+> **Blood Testing, Anywhere. Under $100.**
 
-Welcome to the complete documentation for Lifeline, a low-cost, home-fabricated blood analyzer for essential biomarkers. This documentation provides everything you need to build, set up, and operate your own Lifeline device.
+Welcome to the complete documentation for Lifeline, an edge-powered blood testing kit with multimodal AI interpretation. This documentation provides everything you need to build, set up, and operate your own Lifeline device.
 
 ## Project Overview
 
-Lifeline is a portable, affordable blood testing device designed to make essential biomarker analysis accessible to students, researchers, and communities worldwide. The system combines microfluidic paper-based analytical devices (μPADs) with electrochemical sensors and optical analysis to provide accurate, rapid blood testing capabilities.
+Lifeline is an edge-powered blood testing kit that uses colorimetric and electrochemical assays for key biomarkers, paired with a fine-tuned Gemma 3n multimodal model running fully on-device. The platform interprets results with user-provided lifestyle context, presenting easy-to-understand, medically-informed explanations.
 
 ### What Lifeline Solves
 
 - **Access Gap**: Brings laboratory-quality testing to resource-limited settings
-- **Cost Barrier**: Reduces testing costs from hundreds to under $50 per device
-- **Knowledge Barrier**: Provides open-source design for education and research
+- **Cost Barrier**: Reduces testing costs from hundreds to under $100 per device
+- **Knowledge Barrier**: Provides AI-powered interpretation for non-experts
 - **Geographic Barrier**: Enables testing in remote or disaster-affected areas
 
 ### Who Benefits
@@ -22,6 +22,7 @@ Lifeline is a portable, affordable blood testing device designed to make essenti
 - **Communities**: Access basic health screening in underserved areas
 - **Educators**: Teach biomedical engineering and public health
 - **Developers**: Build upon open-source platform for new applications
+- **Users**: Get AI-powered explanations of their health data
 
 ## Quick Start
 
@@ -41,7 +42,7 @@ Lifeline is a portable, affordable blood testing device designed to make essenti
 
 ### Technical Details
 - System architecture overview
-- Electrochemical assay process
+- AI model development and deployment
 - Supported biomarkers
 - Data management and export
 - Safety considerations
@@ -54,6 +55,7 @@ Lifeline is a portable, affordable blood testing device designed to make essenti
 
 ### Advanced Topics
 - Custom assay development
+- AI model fine-tuning
 - Hardware modifications
 - Software customization
 - Research applications
@@ -73,12 +75,14 @@ Lifeline currently supports the following essential biomarkers:
 
 ## Cost Breakdown
 
-**Total BOM: <$50**
+**Total BOM: <$110**
 
-- Optical components: $15
-- Electronics: $20
-- μPAD materials: $5
-- Enclosure: $5
+- ESP32 microcontroller: $4
+- Raspberry Pi 4 (8GB): $80
+- Camera module: $6
+- Touchscreen display: $15
+- μPAD materials: $2.50
+- Enclosure and misc: $2.50
 - Software: Free (open source)
 
 ## Safety & Compliance
@@ -92,12 +96,12 @@ Lifeline currently supports the following essential biomarkers:
 
 ## Key Features
 
-- **Portable**: Fits in your pocket
-- **Battery-powered**: No external power required
-- **Bluetooth connectivity**: Results to your phone
+- **Edge AI**: On-device multimodal AI interpretation
+- **Privacy-focused**: All processing happens locally
+- **Touchscreen interface**: Easy-to-use graphical interface
 - **Open-source**: Full design files available
 - **Modular**: Easy to customize and extend
-- **Low-cost**: Under $50 total materials
+- **Low-cost**: Under $110 total materials
 
 ## Documentation Structure
 

@@ -4,31 +4,40 @@ This document describes the overall system architecture of Lifeline, including h
 
 ## System Overview
 
-Lifeline is a modular, portable blood analyzer that combines microfluidic paper-based analytical devices (μPADs) with electrochemical sensors and optical analysis. The system is designed for low-cost, point-of-care testing with high accuracy and reliability.
+Lifeline is an edge-powered blood testing kit that integrates custom hardware, AI, and user-friendly software. The system combines microfluidic paper-based analytical devices (μPADs) with electrochemical sensors and optical analysis, paired with a fine-tuned Gemma 3n multimodal model running fully on-device for intelligent result interpretation.
 
 ## Hardware Architecture
 
 ### Core Components
 
-**Microcontroller Unit (MCU)**
+**ESP32 Microcontroller**
 - **ESP32-WROOM-32**: Dual-core 240 MHz processor
 - **Memory**: 520 KB SRAM, 4 MB Flash
 - **Connectivity**: WiFi 802.11 b/g/n, Bluetooth 4.2
 - **GPIO**: 34 pins for sensor interfacing
 - **ADC**: 18 channels, 12-bit resolution
+- **Function**: Handles analog data acquisition from cartridges
+
+**Raspberry Pi 4 (8GB)**
+- **CPU**: Quad-core ARM Cortex-A72 at 1.5GHz
+- **RAM**: 8GB LPDDR4
+- **Storage**: MicroSD card (32GB+ recommended)
+- **Connectivity**: WiFi, Bluetooth, USB 3.0
+- **Function**: Runs AI model and user interface
 
 **Optical System**
-- **Color Sensor**: TCS3200 RGB color sensor
-- **Light Source**: 4x RGB LEDs (red, green, blue, white)
-- **Lens**: 6mm focal length for optimal focus
-- **Wavelength Range**: 400-700 nm
-- **Resolution**: 8-bit per color channel
+- **Camera Module**: Raspberry Pi Camera Module v2
+- **Resolution**: 8MP (3280x2464 pixels)
+- **Sensor**: Sony IMX219
+- **Lens**: Fixed focus, 3.04mm focal length
+- **Function**: Captures high-resolution images of colorimetric strips
 
 **Display Interface**
-- **OLED Display**: 1.3" I2C (128x64 pixels)
-- **Interface**: I2C communication (0x3C address)
-- **Power**: 3.3V, 20mA consumption
-- **Viewing Angle**: 160 degrees
+- **Touchscreen Display**: 7" capacitive touchscreen
+- **Resolution**: 1024x600 pixels
+- **Interface**: HDMI and USB for touch
+- **Power**: 5V, 500mA consumption
+- **Function**: User interface and result display
 
 **Power System**
 - **Battery**: 3.7V 2000mAh LiPo
