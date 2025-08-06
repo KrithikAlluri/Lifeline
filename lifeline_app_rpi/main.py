@@ -11,6 +11,9 @@ from pages.results_page import ResultsPage
 from pages.settings_page import SettingsPage
 from pages.chatbot_page import ChatbotPage
 
+# Import model manager
+from model_manager import load_model
+
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -124,6 +127,10 @@ class MainWindow(QMainWindow):
 
 def main():
     app = QApplication(sys.argv)
+    
+    # Load the model before creating the main window
+    load_model()
+    
     window = MainWindow()
     window.show()
     sys.exit(app.exec_())

@@ -1,15 +1,13 @@
-import requests
 import json
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QTextEdit, QPushButton, QHBoxLayout
 from PyQt5.QtCore import Qt
 from managers.csv_manager import CsvManager
-
-# Load API key from environment variable for production security
+import sys
 import os
-OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "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")
-OPENROUTER_MODEL = "google/gemma-3n-e2b-it:free"
-REFERER = "https://lifeline-blood-testing.com"
-TITLE = "Lifeline Blood Testing Kit"
+
+# Import the model manager
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from model_manager import local_gemma_inference
 
 USER_AVATAR = "🧑"
 BOT_AVATAR = "🩸"  # or use "🤖" for a robot look
@@ -48,23 +46,23 @@ class ChatbotPage(QWidget):
         self.get_first_bot_message()
 
     def add_preprompt(self):
-        preprompt = (
-    """You are Lifeline, a friendly and knowledgeable assistant built into a blood-testing app. Your role is to:
-1. Interpret numeric biomarker results (e.g., glucose, iron) using standard medical reference ranges.
-2. Provide a clear explanation in plain language, but dont talk too much.
-3. Use calm, supportive tone, without bold or Markdown and dont use emojis.
-4. If you don’t have enough information, ask clarifying questions.
+        preprompt = ("")
+#     """You are Lifeline, a friendly and knowledgeable assistant built into a blood-testing app. Your role is to:
+# 1. Interpret numeric biomarker results (e.g., glucose, iron) using standard medical reference ranges.
+# 2. Provide a clear explanation in plain language, but dont talk too much.
+# 3. Use calm, supportive tone, without bold or Markdown and dont use emojis.
+# 4. If you don’t have enough information, ask clarifying questions.
 
-Example conversation:
+# Example conversation:
 
-User: My glucose is 65 mg/dL. Is that low?
-Lifeline: A glucose of 65 mg/dL is slightly below the typical fasting range (70–99 mg/dL). That’s considered mild hypoglycemia but not severe. You might feel shaky or tired. Make sure to have a balanced snack soon and monitor how you feel. This is educational only—please consult your doctor.
+# User: My glucose is 65 mg/dL. Is that low?
+# Lifeline: A glucose of 65 mg/dL is slightly below the typical fasting range (70–99 mg/dL). That’s considered mild hypoglycemia but not severe. You might feel shaky or tired. Make sure to have a balanced snack soon and monitor how you feel. This is educational only—please consult your doctor.
 
-User: What does CRP at 10 mg/L mean?
-Lifeline: A CRP of 10 mg/L indicates moderate inflammation. Normal CRP is below 5 mg/L, so this suggests your body might be responding to an infection or stress. If you have symptoms or persistent elevation, talk to your doctor. This is educational only—please consult your doctor.
+# User: What does CRP at 10 mg/L mean?
+# Lifeline: A CRP of 10 mg/L indicates moderate inflammation. Normal CRP is below 5 mg/L, so this suggests your body might be responding to an infection or stress. If you have symptoms or persistent elevation, talk to your doctor. This is educational only—please consult your doctor.
 
-Now respond as Lifeline. If the user refers to any blood test results, look at their blood tests below: """
-)
+# Now respond as Lifeline. If the user refers to any blood test results, look at their blood tests below: """
+# )
         # Add past blood tests if user is logged in
         user = getattr(self.parent, 'current_user', None)
         if user:
@@ -130,31 +128,11 @@ Now respond as Lifeline. If the user refers to any blood test results, look at t
         self.append_message(BOT_NAME, f"<i>{BOT_NAME} is typing...</i>", BOT_AVATAR)
         self.typing_line = True
         try:
-            payload = {
-                "model": OPENROUTER_MODEL,
-                "messages": self.messages,
-            }
-            response = requests.post(
-                url="https://openrouter.ai/api/v1/chat/completions",
-                headers={
-                    "Authorization": f"Bearer {OPENROUTER_API_KEY}",
-                    "Content-Type": "application/json",
-                    "HTTP-Referer": REFERER,
-                    "X-Title": TITLE,
-                },
-                data=json.dumps(payload)
-            )
+            # Use local inference instead of API call
+            bot_reply = local_gemma_inference(self.messages)
             self.remove_typing_line()
-            if response.status_code == 200:
-                data = response.json()
-                try:
-                    bot_reply = data["choices"][0]["message"]["content"]
-                    self.append_message(BOT_NAME, bot_reply, BOT_AVATAR)
-                    self.messages.append({"role": "assistant", "content": bot_reply})
-                except Exception as e:
-                    self.append_message(BOT_NAME, "[Error: Could not parse Lifeline reply. See debug area.]", BOT_AVATAR)
-            else:
-                self.append_message(BOT_NAME, f"[Error: {response.status_code}] {response.text}", BOT_AVATAR)
+            self.append_message(BOT_NAME, bot_reply, BOT_AVATAR)
+            self.messages.append({"role": "assistant", "content": bot_reply})
         except Exception as e:
             self.remove_typing_line()
             self.append_message(BOT_NAME, f"[Error: {str(e)}]", BOT_AVATAR)
@@ -168,31 +146,11 @@ Now respond as Lifeline. If the user refers to any blood test results, look at t
     def get_first_bot_message(self):
         self.append_message(BOT_NAME, f"<i>{BOT_NAME} is typing...</i>", BOT_AVATAR)
         try:
-            payload = {
-                "model": OPENROUTER_MODEL,
-                "messages": self.messages,
-            }
-            response = requests.post(
-                url="https://openrouter.ai/api/v1/chat/completions",
-                headers={
-                    "Authorization": f"Bearer {OPENROUTER_API_KEY}",
-                    "Content-Type": "application/json",
-                    "HTTP-Referer": REFERER,
-                    "X-Title": TITLE,
-                },
-                data=json.dumps(payload)
-            )
+            # Use local inference instead of API call
+            bot_reply = local_gemma_inference(self.messages)
             self.remove_typing_line()
-            if response.status_code == 200:
-                data = response.json()
-                try:
-                    bot_reply = data["choices"][0]["message"]["content"]
-                    self.append_message(BOT_NAME, bot_reply, BOT_AVATAR)
-                    self.messages.append({"role": "assistant", "content": bot_reply})
-                except Exception as e:
-                    self.append_message(BOT_NAME, "[Error: Could not parse Lifeline reply. See debug area.]", BOT_AVATAR)
-            else:
-                self.append_message(BOT_NAME, f"[Error: {response.status_code}] {response.text}", BOT_AVATAR)
+            self.append_message(BOT_NAME, bot_reply, BOT_AVATAR)
+            self.messages.append({"role": "assistant", "content": bot_reply})
         except Exception as e:
             self.remove_typing_line()
             self.append_message(BOT_NAME, f"[Error: {str(e)}]", BOT_AVATAR)
