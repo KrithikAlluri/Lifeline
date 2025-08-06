@@ -1,2 +1,3 @@
 username,password_hash,email,age,sex,weight,height,smoking,alcohol,exercise,diet,conditions,medications
-Krithik,768a28765da70a9f4ed16b0e231ad9746e20ba6e308d13ae91ce74d0e0bded69,ktemp.alluri@gmail.com,19,Male,62.5,177,No,Occasional,Some,Omnivore,None,None
+Krithik,768a28765da70a9f4ed16b0e231ad9746e20ba6e308d13ae91ce74d0e0bded69,ktemp.alluri@gmail.com,19,Male,62.5,177,No,Occasional,Some,Omnivore,,
+JohnSmith,9f542590100424c92a6ae40860f7017ac5dfbcff3cb49b36eace29b068e0d8e1,,30,Male,100,170,No,Occasional,Some,Omnivore,,

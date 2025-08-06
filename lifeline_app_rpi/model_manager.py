@@ -72,6 +72,16 @@ def local_gemma_inference(messages):
         if "Assistant: " in reply:
             reply = reply.split("Assistant: ")[-1].strip()
         
+        # Clean up unwanted characters like asterisks
+        reply = reply.replace("*", "").strip()
+        
+        # Remove any remaining asterisk patterns (like *****)
+        import re
+        reply = re.sub(r'\*+', '', reply)
+        
+        # Clean up extra whitespace
+        reply = re.sub(r'\s+', ' ', reply).strip()
+        
         return reply
         
     except Exception as e:
